@@ -740,7 +740,11 @@ const ContactSection = () => {
         <h2 className="text-center mb-5">Get In Touch</h2>
         <div className="row">
           <div className="col-lg-6 mx-auto">
-            <form 
+            <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+              <input type="text" name="name" />
+              <input type="email" name="email" />
+              <textarea name="message"></textarea>
+              
               name="contact" 
               method="POST" 
               data-netlify="true" 

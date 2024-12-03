@@ -1,9 +1,4 @@
-<html><head><base href="." 
-<form name="contact" netlify netlify-honeypot="bot-field" hidden>
-  <input type="text" name="name" />
-  <input type="email" name="email" />
-  <textarea name="message"></textarea>
-</form> />
+<html><head><base href="." />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cyber Security Portfolio | South Africa</title>
@@ -1569,49 +1564,35 @@ const ProjectsSection = () => {
 };
 
 const ContactSection = () => {
-  const [status, setStatus] = React.useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
-    })
-      .then(() => {
-        setStatus("Thanks for your submission!");
-        form.reset();
-      })
-      .catch((error) => {
-        setStatus("There was an error submitting the form");
-        console.error(error);
-      });
-  };
-
   return (
-    <section id="contact" className="py-5 bg-light">
+    <section id="contact" className="py-5" style={{ position: 'relative', zIndex: 1 }}>
       <div className="container">
-        <h2 className="text-center mb-5">Get In Touch</h2>
-        <div className="row">
-          <div className="col-lg-6 mx-auto">
-            <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-              <input type="text" name="name" />
-              <input type="email" name="email" />
-              <textarea name="message"></textarea>
-              
+        <h2 className="text-center mb-5" style={{ color: 'var(--secondary-color)' }}>
+          Get In Touch
+        </h2>
+        <div className="row justify-content-center">
+          <div className="col-lg-6 col-md-8">
+            <form 
               name="contact" 
               method="POST" 
               data-netlify="true" 
-              data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}
+              netlify-honeypot="bot-field" 
               className="contact-form"
+              style={{
+                background: 'var(--card-bg)',
+                padding: '2rem',
+                borderRadius: '10px',
+                border: '1px solid var(--secondary-color)',
+                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
+              }}
             >
               <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="bot-field" />
-
+              <p className="d-none">
+                <label>
+                  Don’t fill this out if you're human:
+                  <input name="bot-field" />
+                </label>
+              </p>
               <div className="mb-3">
                 <input 
                   type="text" 
@@ -1619,6 +1600,11 @@ const ContactSection = () => {
                   className="form-control" 
                   placeholder="Your Name" 
                   required 
+                  style={{
+                    background: 'rgba(255,255,255,0.1)',
+                    border: '1px solid var(--secondary-color)',
+                    color: 'var(--text-color)',
+                  }}
                 />
               </div>
               <div className="mb-3">
@@ -1628,6 +1614,11 @@ const ContactSection = () => {
                   className="form-control" 
                   placeholder="Your Email" 
                   required 
+                  style={{
+                    background: 'rgba(255,255,255,0.1)',
+                    border: '1px solid var(--secondary-color)',
+                    color: 'var(--text-color)',
+                  }}
                 />
               </div>
               <div className="mb-3">
@@ -1635,19 +1626,26 @@ const ContactSection = () => {
                   name="message" 
                   className="form-control" 
                   rows="5" 
-                  placeholder="Your Message"
-                  required
+                  placeholder="Your Message" 
+                  required 
+                  style={{
+                    background: 'rgba(255,255,255,0.1)',
+                    border: '1px solid var(--secondary-color)',
+                    color: 'var(--text-color)',
+                  }}
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-primary w-100">
+              <button 
+                type="submit" 
+                className="btn btn-primary w-100"
+                style={{
+                  background: 'var(--secondary-color)', 
+                  color: 'var(--primary-color)',
+                  border: 'none',
+                }}
+              >
                 Send Message
               </button>
-              
-              {status && (
-                <div className={`alert ${status.includes('error') ? 'alert-danger' : 'alert-success'} mt-3`}>
-                  {status}
-                </div>
-              )}
             </form>
           </div>
         </div>
@@ -1655,6 +1653,7 @@ const ContactSection = () => {
     </section>
   );
 };
+
 
 const Footer = () => {
   return (

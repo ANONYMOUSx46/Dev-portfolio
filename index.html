@@ -1,4 +1,845 @@
-<html><head><base href="." />
+<html><head><base href="." 
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message"></textarea>
+</form> />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security Portfolio | South Africa</title>
+
+<!-- React and React DOM -->
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+<!-- Bootstrap CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<style>
+:root {
+  /* Dark theme (default) */
+  --primary-color: #0a192f;
+  --secondary-color: #64ffda;
+  --accent-color: #00ff00;
+  --bg-color: #0d1117;  /* Darker GitHub-style background */
+  --text-color: #8892b0;
+  --card-bg: rgba(30, 41, 59, 0.5);
+  
+  /* Light theme */
+  --light-primary: #f8fafc;
+  --light-secondary: #0ea5e9;
+  --light-accent: #0284c7;
+  --light-bg: #f1f5f9;
+  --light-text: #334155;
+  --light-card-bg: rgba(241, 245, 249, 0.9);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on navbar height */
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+body.light-mode {
+  --primary-color: var(--light-primary);
+  --secondary-color: var(--light-secondary);
+  --accent-color: var(--light-accent);
+  --bg-color: var(--light-bg);
+  --text-color: var(--light-text);
+  --card-bg: var(--light-card-bg);
+}
+
+.navbar {
+  background: rgba(10, 25, 47, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 25, 47, 0.95),
+    rgba(10, 25, 47, 0.8)
+  );
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.glitch-text {
+  text-shadow: 
+    0.05em 0 0 rgba(255,0,0,.75),
+    -0.025em -0.05em 0 rgba(0,255,0,.75),
+    0.025em 0.05em 0 rgba(0,0,255,.75);
+  animation: glitch 500ms infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 
+      0.05em 0 0 rgba(255,0,0,.75),
+      -0.05em -0.025em 0 rgba(0,255,0,.75),
+      -0.025em 0.05em 0 rgba(0,0,255,.75);
+  }
+  14% {
+    text-shadow: 
+      0.05em 0 0 rgba(255,0,0,.75),
+      -0.05em -0.025em 0 rgba(0,255,0,.75),
+      -0.025em 0.05em 0 rgba(0,0,255,.75);
+  }
+  15% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255,0,0,.75),
+      0.025em 0.025em 0 rgba(0,255,0,.75),
+      -0.05em -0.05em 0 rgba(0,0,255,.75);
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255,0,0,.75),
+      0.025em 0.025em 0 rgba(0,255,0,.75),
+      -0.05em -0.05em 0 rgba(0,0,255,.75);
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255,0,0,.75),
+      0.05em 0 0 rgba(0,255,0,.75),
+      0 -0.05em 0 rgba(0,0,255,.75);
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255,0,0,.75),
+      0.05em 0 0 rgba(0,255,0,.75),
+      0 -0.05em 0 rgba(0,0,255,.75);
+  }
+  100% {
+    text-shadow: 
+      -0.025em 0 0 rgba(255,0,0,.75),
+      -0.025em -0.025em 0 rgba(255,0,0,.75),
+      -0.025em -0.05em 0 rgba(0,0,255,.75);
+  }
+}
+
+.skill-card {
+  min-height: 180px; /* Increased height to accommodate larger icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px) rotateX(10deg);
+  box-shadow: 
+    0 5px 15px rgba(100, 255, 218, 0.2),
+    0 0 30px rgba(100, 255, 218, 0.1);
+}
+
+.skill-card i {
+  font-size: 2.5em; /* Adjusted icon size */
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.3));
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover i {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(100, 255, 218, 0.5));
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: var(--card-bg);
+  border-radius: 15px;
+  border: 1px solid var(--secondary-color);
+}
+
+.contact-form input, .contact-form textarea {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid var(--secondary-color);
+  color: white;
+}
+
+.btn-primary {
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.typing-effect::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  min-height: 300px;
+  opacity: 1;  /* Changed from 0 to 1 to make sure it's visible */
+  background: rgba(10, 25, 47, 0.95);
+  color: #64ffda;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #64ffda;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  z-index: 1000;  /* Ensure it's above other elements */
+  box-shadow: 
+    0 0 30px rgba(100, 255, 218, 0.2),
+    inset 0 0 30px rgba(100, 255, 218, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseBox {
+  0% {
+    box-shadow: 
+      0 0 30px rgba(100, 255, 218, 0.2),
+      inset 0 0 30px rgba(100, 255, 218, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 40px rgba(100, 255, 218, 0.3),
+      inset 0 0 40px rgba(100, 255, 218, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 0 30px rgba(100, 255, 218, 0.2),
+      inset 0 0 30px rgba(100, 255, 218, 0.1);
+  }
+}
+
+.floating-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating-icon i {
+  font-size: 8em;
+  filter: drop-shadow(0 0 15px var(--secondary-color));
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 0 15px var(--secondary-color);
+}
+
+.project-card .card-title {
+  color: var(--secondary-color);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.project-card .card-text {
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.project-card .icon-circle {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .icon-circle {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.project-card .badge {
+  transition: all 0.3s ease;
+}
+
+.project-card .badge:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 6rem 0;
+  scroll-margin-top: 80px; /* Adjust based on navbar height */
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 4rem 0;
+  }
+  
+  .skill-card {
+    min-height: 140px;
+    margin: 5px;
+  }
+  
+  .terminal-window {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .floating-icon i {
+    font-size: 6em;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const ThemeToggle = () => {
+  const [isHackerMode, setIsHackerMode] = React.useState(true);
+  
+  const toggleTheme = () => {
+    setIsHackerMode(!isHackerMode);
+    document.body.classList.toggle('light-mode');
+  };
+
+  return (
+    <div className="theme-toggle" 
+         style={{
+           position: 'fixed',
+           top: '80px',
+           right: '20px',
+           zIndex: 1000,
+           padding: '12px',
+           background: isHackerMode ? '#1e293b' : '#e2e8f0',
+           borderRadius: '50%',
+           cursor: 'pointer',
+           border: `2px solid ${isHackerMode ? '#64ffda' : '#0ea5e9'}`,
+           boxShadow: `0 0 15px ${isHackerMode ? 'rgba(100, 255, 218, 0.3)' : 'rgba(14, 165, 233, 0.3)'}`,
+           transition: 'all 0.3s ease'
+         }}
+         onClick={toggleTheme}
+    >
+      <i className={`fas fa-${isHackerMode ? 'shield-alt' : 'user'} fa-lg`}
+         style={{
+           color: isHackerMode ? '#64ffda' : '#0ea5e9',
+           filter: `drop-shadow(0 0 2px ${isHackerMode ? '#64ffda' : '#0ea5e9'})`
+         }}
+      ></i>
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <Navbar />
+      <ThemeToggle />
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
+      <Footer />
+    </div>
+  );
+};
+
+const Navbar = () => {
+  const scrollToSection = (sectionId, e) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = document.querySelector('.navbar').offsetHeight;
+      const elementPosition = element.offsetTop;
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div className="container">
+        <a className="navbar-brand" href="#" onClick={(e) => scrollToSection('hero', e)}>CyberPortfolio</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="#about" onClick={(e) => scrollToSection('about', e)}>About</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#skills" onClick={(e) => scrollToSection('skills', e)}>Skills</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#projects" onClick={(e) => scrollToSection('projects', e)}>Projects</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#contact" onClick={(e) => scrollToSection('contact', e)}>Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+const HeroSection = () => {
+  const [terminalText, setTerminalText] = React.useState('');
+  const [authorized, setAuthorized] = React.useState(false);
+  const fullText = `> Initializing secure connection...\n> Running system diagnostics...\n> Authenticating user credentials...\n> Accessing mainframe...\n> Decrypting secure database...\n> Establishing encrypted tunnel...\n> Access granted. Welcome to the system.`;
+
+  React.useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      setTerminalText(fullText.substring(0, index));
+      index++;
+      if (index > fullText.length) {
+        clearInterval(timer);
+        setTimeout(() => setAuthorized(true), 500);
+      }
+    }, 50);
+    return () => clearInterval(timer);
+  }, []);
+
+  const mainContent = (
+    <div className="row align-items-center min-vh-100 animate__animated animate__fadeIn"
+         style={{
+           opacity: authorized ? 1 : 0,
+           transition: 'opacity 0.5s ease-in-out',
+           visibility: authorized ? 'visible' : 'hidden'
+         }}>
+      <div className="col-lg-6 animate__animated animate__fadeInLeft">
+        <h1 className="display-4 fw-bold glitch-text">
+          Cyber Security Enthusiast. Liam De Wet
+        </h1>
+        <p className="lead typing-effect">Based in Cape Town, South Africa</p>
+        <p>High school student exploring the depths of cyber security</p>
+        <button className="btn btn-primary btn-lg mt-3">
+          <i className="fas fa-terminal me-2"></i>
+          Explore My Work
+        </button>
+      </div>
+      <div className="col-lg-6 animate__animated animate__fadeInRight">
+        <div className="floating-icon text-center">
+          <i className="fas fa-shield-alt fa-10x" style={{color: 'var(--secondary-color)'}}></i>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <section id="hero" className="hero-section">
+      <div id="particles-js"></div>
+      <div className="container hero-content">
+        <div className="terminal-window mb-4" 
+             style={{
+               display: authorized ? 'none' : 'block',
+               visibility: authorized ? 'hidden' : 'visible'
+             }}>
+          <pre style={{ margin: 0, color: '#64ffda' }}>{terminalText}</pre>
+        </div>
+        {authorized && mainContent}
+      </div>
+    </section>
+  );
+};
+
+const AboutSection = () => {
+  return (
+    <section id="about" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">About Me</h2>
+        <div className="row">
+          <div className="col-lg-8 mx-auto">
+            <p className="lead text-center">
+              I'm enhancing my skills in Cyber Security through various courses, focusing on ethical hacking. 
+              Currently learning from platforms like HTB Academy and TryHackMe.
+            </p>
+            <div className="text-center mt-4">
+              <div className="badge bg-primary m-1">Ethical Hacking</div>
+              <div className="badge bg-success m-1">Web Development</div>
+              <div className="badge bg-info m-1">Network Security</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const SkillsSection = () => {
+  const skills = [
+    { 
+      name: "Python", 
+      icon: "fab fa-python"  // Python logo
+    },
+    { 
+      name: "Linux", 
+      icon: "fab fa-linux"  // Linux logo
+    },
+    { 
+      name: "AWS Cloud", 
+      icon: "fab fa-aws"  // AWS logo
+    },
+    { 
+      name: "Docker", 
+      icon: "fab fa-docker"  // Docker logo
+    },
+    { 
+      name: "Git", 
+      icon: "fab fa-git-alt"  // Git logo
+    },
+    { 
+      name: "Node.js", 
+      icon: "fab fa-node-js"  // Node.js logo
+    },
+    { 
+      name: "Shell Scripting", 
+      icon: "fas fa-terminal"  // Terminal icon for shell
+    },
+    { 
+      name: "Networking", 
+      icon: "fas fa-network-wired"  // Network icon
+    },
+    { 
+      name: "Web Security", 
+      icon: "fas fa-shield-alt"  // Security shield
+    },
+    { 
+      name: "Encryption", 
+      icon: "fas fa-key"  // Key/encryption icon
+    },
+    { 
+      name: "Windows", 
+      icon: "fab fa-windows"  // Windows logo
+    },
+    { 
+      name: "Kali Linux", 
+      icon: "fab fa-linux"  // Linux logo for Kali
+    }
+  ];
+
+  return (
+    <section id="skills" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">
+          <i className="fas fa-laptop-code me-2"></i>
+          Skills & Technologies
+        </h2>
+        <div className="row g-4">
+          {skills.map((skill, index) => (
+            <div key={index} className="col-md-3 col-sm-6">
+              <div className="skill-card h-100">
+                <div className="text-center">
+                  <i className={`${skill.icon} fa-3x mb-3`}></i>
+                  <h5 className="card-title">{skill.name}</h5>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ProjectsSection = () => {
+  const projects = [
+    {
+      title: "School Network Security Audit",
+      description: "Conducted comprehensive network security assessment using industry-standard penetration testing methodologies. Identified and documented vulnerabilities while following ethical hacking practices.",
+      tech: ["Penetration Testing", "Network Security", "Risk Assessment"],
+      icon: "fas fa-network-wired",
+      color: "#00ff7f"
+    },
+    {
+      title: "Secure Web Application Platform",
+      description: "Developed and implemented a secure web application with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
+      tech: ["React", "Node.js", "Security Protocols"],
+      icon: "fas fa-shield-alt",
+      color: "#4169e1"
+    },
+    {
+      title: "Security Tool Development",
+      description: "Created custom security tools for automated vulnerability scanning and threat detection. Implemented machine learning algorithms for anomaly detection.",
+      tech: ["Python", "AI/ML", "Automation"],
+      icon: "fas fa-tools",
+      color: "#ff4500"
+    }
+  ];
+
+  return (
+    <section id="projects" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">
+          <i className="fas fa-project-diagram me-2"></i>
+          Featured Projects
+        </h2>
+        <div className="row g-4">
+          {projects.map((project, index) => (
+            <div key={index} className="col-lg-4">
+              <div className="project-card h-100">
+                <div className="card-body d-flex flex-column">
+                  <div className="text-center mb-4">
+                    <div className="icon-circle mb-3" 
+                         style={{
+                           background: `linear-gradient(135deg, ${project.color}22, ${project.color}11)`,
+                           width: '80px',
+                           height: '80px',
+                           borderRadius: '50%',
+                           display: 'inline-flex',
+                           alignItems: 'center',
+                           justifyContent: 'center',
+                           border: `2px solid ${project.color}`,
+                         }}>
+                      <i className={`${project.icon} fa-2x`} 
+                         style={{color: project.color}}></i>
+                    </div>
+                    <h4 className="card-title mb-3">{project.title}</h4>
+                  </div>
+                  <p className="card-text flex-grow-1">{project.description}</p>
+                  <div className="mt-4">
+                    <hr style={{borderColor: 'var(--secondary-color)'}} />
+                    <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
+                      {project.tech.map((tech, i) => (
+                        <span key={i} 
+                              className="badge"
+                              style={{
+                                background: `${project.color}22`,
+                                color: project.color,
+                                border: `1px solid ${project.color}`,
+                                padding: '8px 16px',
+                                fontSize: '0.85rem'
+                              }}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ContactSection = () => {
+  return (
+    <section id="contact" className="py-5 bg-light">
+      <div className="container">
+        <h2 className="text-center mb-5">Get In Touch</h2>
+        <div className="row">
+          <div className="col-lg-6 mx-auto">
+            <form 
+              name="contact" 
+              method="POST" 
+              data-netlify="true" 
+              onSubmit="submit"
+              className="contact-form"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <div className="mb-3">
+                <input 
+                  type="text" 
+                  name="name" 
+                  className="form-control" 
+                  placeholder="Your Name" 
+                  required 
+                />
+              </div>
+              <div className="mb-3">
+                <input 
+                  type="email" 
+                  name="email" 
+                  className="form-control" 
+                  placeholder="Your Email" 
+                  required 
+                />
+              </div>
+              <div className="mb-3">
+                <textarea 
+                  name="message" 
+                  className="form-control" 
+                  rows="5" 
+                  placeholder="Your Message" 
+                  required
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className="btn btn-primary w-100"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer className="py-4 bg-dark text-white">
+      <div className="container text-center">
+        <p className="mb-0">© 2024 Cyber Security Portfolio. All rights reserved.</p>
+        <div className="mt-3">
+          <a href="https://github.com" className="text-white me-3"><i className="fab fa-github"></i></a>
+          <a href="https://linkedin.com" className="text-white me-3"><i className="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com" className="text-white"><i className="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize particles.js
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: '#64ffda' },
+      shape: { type: 'circle' },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: { enable: false }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: { enable: false }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: '#64ffda',
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 6,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' },
+        resize: true
+      }
+    },
+    retina_detect: true
+  });
+});
+</script>
+
+</body>
+</html><html><head><base href="." />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cyber Security Portfolio | South Africa</title>

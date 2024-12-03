@@ -718,19 +718,27 @@ const ProjectsSection = () => {
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-5 bg-light">
+    <section id="contact" className="py-5">
       <div className="container">
-        <h2 className="text-center mb-5">Get In Touch</h2>
+        <h2 className="text-center mb-5" style={{ color: 'var(--secondary-color)' }}>
+          Contact Me
+        </h2>
         <div className="row">
-          <div className="col-lg-6 mx-auto">
+          <div className="col-lg-8 mx-auto">
             <form 
               name="contact" 
               method="POST" 
               data-netlify="true" 
-              onSubmit="submit"
+              netlify-honeypot="bot-field" 
               className="contact-form"
             >
               <input type="hidden" name="form-name" value="contact" />
+              <p className="d-none">
+                <label>
+                  Don’t fill this out if you're human:
+                  <input name="bot-field" />
+                </label>
+              </p>
               <div className="mb-3">
                 <input 
                   type="text" 
@@ -738,6 +746,7 @@ const ContactSection = () => {
                   className="form-control" 
                   placeholder="Your Name" 
                   required 
+                  style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-color)' }}
                 />
               </div>
               <div className="mb-3">
@@ -747,6 +756,7 @@ const ContactSection = () => {
                   className="form-control" 
                   placeholder="Your Email" 
                   required 
+                  style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-color)' }}
                 />
               </div>
               <div className="mb-3">
@@ -755,12 +765,17 @@ const ContactSection = () => {
                   className="form-control" 
                   rows="5" 
                   placeholder="Your Message" 
-                  required
+                  required 
+                  style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-color)' }}
                 ></textarea>
               </div>
               <button 
                 type="submit" 
                 className="btn btn-primary w-100"
+                style={{
+                  background: 'var(--secondary-color)', 
+                  color: 'var(--primary-color)'
+                }}
               >
                 Send Message
               </button>
@@ -771,6 +786,7 @@ const ContactSection = () => {
     </section>
   );
 };
+
 
 const Footer = () => {
   return (

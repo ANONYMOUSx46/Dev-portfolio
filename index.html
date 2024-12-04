@@ -1487,21 +1487,24 @@ const ProjectsSection = () => {
       description: "Conducted comprehensive network security assessment using industry-standard penetration testing methodologies. Identified and documented vulnerabilities while following ethical hacking practices.",
       tech: ["Penetration Testing", "Network Security", "Risk Assessment"],
       icon: "fas fa-network-wired",
-      color: "#00ff7f"
+      color: "#00ff7f",
+      url: null // No URL for this project
     },
     {
       title: "Secure Web Application Platform",
       description: "Developed and implemented a secure web application with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
       tech: ["React", "Node.js", "Security Protocols"],
       icon: "fas fa-shield-alt",
-      color: "#4169e1"
+      color: "#4169e1",
+      url: "https://moodring-sync.netlify.app" // Replace with actual URL
     },
     {
       title: "Security Tool Development",
-      description: "Created custom security tools for automated vulnerability scanning and threat detection. Implemented machine learning algorithms for anomaly detection.",
+      description: "Created a custom security tool for automated vulnerability scanning and threat detection. Implemented machine learning algorithms for anomaly detection.",
       tech: ["Python", "AI/ML", "Automation"],
       icon: "fas fa-tools",
-      color: "#ff4500"
+      color: "#ff4500",
+      url: "https://github.com/ANONYMOUSx46/python-security-tool" // Replace with actual URL
     }
   ];
 
@@ -1515,46 +1518,30 @@ const ProjectsSection = () => {
         <div className="row g-4">
           {projects.map((project, index) => (
             <div key={index} className="col-lg-4">
-              <div className="project-card h-100">
-                <div className="card-body d-flex flex-column">
-                  <div className="text-center mb-4">
-                    <div className="icon-circle mb-3" 
-                         style={{
-                           background: `linear-gradient(135deg, ${project.color}22, ${project.color}11)`,
-                           width: '80px',
-                           height: '80px',
-                           borderRadius: '50%',
-                           display: 'inline-flex',
-                           alignItems: 'center',
-                           justifyContent: 'center',
-                           border: `2px solid ${project.color}`,
-                         }}>
-                      <i className={`${project.icon} fa-2x`} 
-                         style={{color: project.color}}></i>
-                    </div>
-                    <h4 className="card-title mb-3">{project.title}</h4>
+              {project.url ? (
+                // Clickable card for projects with URLs
+                <a 
+                  href={project.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ textDecoration: "none" }}
+                >
+                  <div 
+                    className="project-card h-100"
+                    style={{ cursor: "pointer", position: "relative" }}
+                  >
+                    <CardContent project={project} />
                   </div>
-                  <p className="card-text flex-grow-1">{project.description}</p>
-                  <div className="mt-4">
-                    <hr style={{borderColor: 'var(--secondary-color)'}} />
-                    <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
-                      {project.tech.map((tech, i) => (
-                        <span key={i} 
-                              className="badge"
-                              style={{
-                                background: `${project.color}22`,
-                                color: project.color,
-                                border: `1px solid ${project.color}`,
-                                padding: '8px 16px',
-                                fontSize: '0.85rem'
-                              }}>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                </a>
+              ) : (
+                // Non-clickable card for projects without URLs
+                <div 
+                  className="project-card h-100"
+                  style={{ cursor: "default", position: "relative", opacity: 0.8 }}
+                >
+                  <CardContent project={project} />
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
@@ -1562,6 +1549,54 @@ const ProjectsSection = () => {
     </section>
   );
 };
+
+// Helper Component for Card Content
+const CardContent = ({ project }) => (
+  <div className="card-body d-flex flex-column">
+    <div className="text-center mb-4">
+      <div
+        className="icon-circle mb-3"
+        style={{
+          background: `linear-gradient(135deg, ${project.color}22, ${project.color}11)`,
+          width: "80px",
+          height: "80px",
+          borderRadius: "50%",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: `2px solid ${project.color}`,
+        }}
+      >
+        <i className={`${project.icon} fa-2x`} style={{ color: project.color }}></i>
+      </div>
+      <h4 className="card-title mb-3">{project.title}</h4>
+    </div>
+    <p className="card-text flex-grow-1">{project.description}</p>
+    <div className="mt-4">
+      <hr style={{ borderColor: "var(--secondary-color)" }} />
+      <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
+        {project.tech.map((tech, i) => (
+          <span
+            key={i}
+            className="badge"
+            style={{
+              background: `${project.color}22`,
+              color: project.color,
+              border: `1px solid ${project.color}`,
+              padding: "8px 16px",
+              fontSize: "0.85rem",
+            }}
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+
+
 
 const ContactSection = () => {
   return (

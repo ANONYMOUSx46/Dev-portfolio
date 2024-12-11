@@ -368,6 +368,33 @@ section {
   .floating-icon i {
     font-size: 6em;
   }
+  
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+#certificates .card img {
+  transition: all 0.3s ease;
+}
+
+#certificates .card:hover img {
+  transform: scale(1.05);
+}
+
+#certificates a:hover {
+  text-decoration: none;
+}
+
+#certificates .card:hover button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 </style>
 </head>
@@ -419,6 +446,7 @@ const App = () => {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+	  <CertificatesSection />
       <ProjectsSection />
       <ContactSection />
       <Footer />
@@ -454,6 +482,9 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#skills" onClick={(e) => scrollToSection('skills', e)}>Skills</a>
+            </li>
+			<li className="nav-item">
+              <a className="nav-link" href="#certificates" onClick={(e) => scrollToSection('certificates', e)}>Certificates</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#projects" onClick={(e) => scrollToSection('projects', e)}>Projects</a>
@@ -628,6 +659,122 @@ const SkillsSection = () => {
   );
 };
 
+const CertificatesSection = () => {
+  const certificates = [
+    {
+      platform: "Sololearn",
+      certs: [
+        {
+          name: "Python Certificate", 
+          image: "", // Add your Sololearn Python certificate image URL here
+          date: "2024"
+        },
+        {
+          name: "Web Development Certificate",
+          image: "", // Add your Sololearn Web Development certificate image URL here
+          date: "2024"
+        }
+      ],
+      icon: "fas fa-award",
+      color: "#149EF2"
+    },
+    {
+      platform: "HTB Academy",
+      profileUrl: "https://app.hackthebox.com/profile/YOURUSERNAME", // Replace with your HTB profile URL
+      icon: "fas fa-cube",
+      color: "#9FEF00"
+    },
+    {
+      platform: "TryHackMe",
+      profileUrl: "https://tryhackme.com/p/YOURUSERNAME", // Replace with your TryHackMe profile URL
+      icon: "fas fa-user-secret",
+      color: "#CC0000"
+    }
+  ];
+
+  return (
+    <section id="certificates" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">
+          <i className="fas fa-certificate me-2"></i>
+          Certifications & Profiles
+        </h2>
+        
+        {/* Sololearn Certificates */}
+        <div className="row mb-5">
+          <div className="col-12">
+            <h3 className="text-center mb-4" style={{color: 'var(--secondary-color)'}}>
+              <i className="fas fa-award me-2"></i>
+              Sololearn Certificates
+            </h3>
+            <div className="row g-4 justify-content-center">
+              {certificates[0].certs.map((cert, index) => (
+                <div key={index} className="col-md-4">
+                  <div className="card h-100" style={{
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--secondary-color)',
+                    borderRadius: '10px',
+                    overflow: 'hidden'
+                  }}>
+                    <img 
+                      src={cert.image} 
+                      alt={cert.name}
+                      className="card-img-top"
+                      style={{
+                        maxHeight: '200px',
+                        objectFit: 'contain',
+                        padding: '1rem'
+                      }}
+                    />
+                    <div className="card-body text-center">
+                      <h5 className="card-title">{cert.name}</h5>
+                      <p className="card-text">Completed: {cert.date}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Platform Profiles */}
+        <div className="row g-4">
+          {certificates.slice(1).map((platform, index) => (
+            <div key={index} className="col-md-6">
+              <a 
+                href={platform.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-decoration-none"
+              >
+                <div className="card h-100" style={{
+                  background: 'var(--card-bg)',
+                  border: `1px solid ${platform.color}`,
+                  borderRadius: '10px',
+                  transition: 'all 0.3s ease'
+                }}>
+                  <div className="card-body text-center p-4">
+                    <i className={`${platform.icon} fa-3x mb-3`} style={{color: platform.color}}></i>
+                    <h4 className="card-title" style={{color: platform.color}}>{platform.platform}</h4>
+                    <p className="card-text mt-3">View my {platform.platform} profile</p>
+                    <button className="btn btn-outline-primary mt-2" style={{
+                      borderColor: platform.color,
+                      color: platform.color
+                    }}>
+                      View Profile <i className="fas fa-external-link-alt ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
 const ProjectsSection = () => {
   const projects = [
     {
@@ -790,8 +937,6 @@ const Footer = () => {
         <p className="mb-0">© 2024 Cyber Security Portfolio. All rights reserved.</p>
         <div className="mt-3">
           <a href="https://github.com" className="text-white me-3"><i className="fab fa-github"></i></a>
-          <a href="https://linkedin.com" className="text-white me-3"><i className="fab fa-linkedin"></i></a>
-          <a href="https://twitter.com" className="text-white"><i className="fab fa-twitter"></i></a>
         </div>
       </div>
     </footer>
@@ -1221,6 +1366,32 @@ section {
     font-size: 6em;
   }
 }
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+#certificates .card img {
+  transition: all 0.3s ease;
+}
+
+#certificates .card:hover img {
+  transform: scale(1.05);
+}
+
+#certificates a:hover {
+  text-decoration: none;
+}
+
+#certificates .card:hover button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
 </style>
 </head>
 <body>
@@ -1271,6 +1442,7 @@ const App = () => {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+	  <CertificatesSection />
       <ProjectsSection />
       <ContactSection />
       <Footer />
@@ -1306,6 +1478,9 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#skills" onClick={(e) => scrollToSection('skills', e)}>Skills</a>
+            </li>
+			 <li className="nav-item">
+              <a className="nav-link" href="#certificates" onClick={(e) => scrollToSection('certificates', e)}>Certificates</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#projects" onClick={(e) => scrollToSection('projects', e)}>Projects</a>
@@ -1472,6 +1647,122 @@ const SkillsSection = () => {
                   <h5 className="card-title">{skill.name}</h5>
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CertificatesSection = () => {
+  const certificates = [
+    {
+      platform: "Sololearn",
+      certs: [
+        {
+          name: "Python Certificate", 
+          image: "C:/Users/Pamspc/Documents/cert.jpg", // Add your Sololearn Python certificate image URL here
+          date: "2024"
+        },
+        {
+          name: "Web Development Certificate",
+          image: "C:/Users/Pamspc/Documents/cert2.png", // Add your Sololearn Web Development certificate image URL here
+          date: "2024"
+        }
+      ],
+      icon: "fas fa-award",
+      color: "#149EF2"
+    },
+    {
+      platform: "HTB Academy",
+      profileUrl: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4", // Replace with your HTB profile URL
+      icon: "fas fa-cube",
+      color: "#9FEF00"
+    },
+    {
+      platform: "TryHackMe",
+      profileUrl: "https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3546539", // Replace with your TryHackMe profile URL
+      icon: "fas fa-user-secret",
+      color: "#CC0000"
+    }
+  ];
+
+  return (
+    <section id="certificates" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">
+          <i className="fas fa-certificate me-2"></i>
+          Certifications & Profiles
+        </h2>
+        
+        {/* Sololearn Certificates */}
+        <div className="row mb-5">
+          <div className="col-12">
+            <h3 className="text-center mb-4" style={{color: 'var(--secondary-color)'}}>
+              <i className="fas fa-award me-2"></i>
+              Sololearn Certificates
+            </h3>
+            <div className="row g-4 justify-content-center">
+              {certificates[0].certs.map((cert, index) => (
+                <div key={index} className="col-md-4">
+                  <div className="card h-100" style={{
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--secondary-color)',
+                    borderRadius: '10px',
+                    overflow: 'hidden'
+                  }}>
+                    <img 
+                      src={cert.image} 
+                      alt={cert.name}
+                      className="card-img-top"
+                      style={{
+                        maxHeight: '500px',
+						minHeight: '300px',
+                        objectFit: 'contain',
+                        padding: '1.6rem'
+                      }}
+                    />
+                    <div className="card-body text-center">
+                      <h5 className="card-title">{cert.name}</h5>
+                      <p className="card-text">Completed: {cert.date}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Platform Profiles */}
+        <div className="row g-4">
+          {certificates.slice(1).map((platform, index) => (
+            <div key={index} className="col-md-6">
+              <a 
+                href={platform.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-decoration-none"
+              >
+                <div className="card h-100" style={{
+                  background: 'var(--card-bg)',
+                  border: `1px solid ${platform.color}`,
+                  borderRadius: '10px',
+                  transition: 'all 0.3s ease'
+                }}>
+                  <div className="card-body text-center p-4">
+                    <i className={`${platform.icon} fa-3x mb-3`} style={{color: platform.color}}></i>
+                    <h4 className="card-title" style={{color: platform.color}}>{platform.platform}</h4>
+                    <p className="card-text mt-3">View my {platform.platform} profile</p>
+                    <button className="btn btn-outline-primary mt-2" style={{
+                      borderColor: platform.color,
+                      color: platform.color
+                    }}>
+                      View Profile <i className="fas fa-external-link-alt ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+              </a>
             </div>
           ))}
         </div>

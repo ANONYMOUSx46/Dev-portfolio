@@ -1656,19 +1656,22 @@ const SkillsSection = () => {
   );
 };
 
+
+
 const CertificatesSection = () => {
   const certificates = [
     {
       platform: "Sololearn",
+      type: "image",
       certs: [
         {
           name: "Python Certificate", 
-          image: "/cert.jpg", // Add my Sololearn Python certificate image URL here
+          image: "/cert.jpg",
           date: "2024"
         },
         {
           name: "Web Development Certificate",
-          image: "/cert2.png", // Add my Sololearn Web Development certificate image URL here
+          image: "/cert2.png",
           date: "2024"
         }
       ],
@@ -1676,101 +1679,181 @@ const CertificatesSection = () => {
       color: "#149EF2"
     },
     {
+      platform: "Professional Certifications",
+      type: "pdf",
+      certs: [
+        {
+          name: "AWS Cloud Practitioner",
+          pdfUrl: "/path-to-pdf/aws-cert.pdf",
+          description: "Validates fundamental understanding of AWS Cloud concepts, services, and terminology",
+          date: "2024"
+        },
+        {
+          name: "CompTIA Security+",
+          pdfUrl: "/path-to-pdf/security-plus.pdf",
+          description: "Demonstrates competency in cybersecurity, network security, and operational security",
+          date: "2023"
+        },
+	{
+	 name: "CompTIA Security+",
+          pdfUrl: "/path-to-pdf/security-plus.pdf",
+          description: "Demonstrates competency in cybersecurity, network security, and operational security",
+          date: "2023"
+	},
+      ],
+      icon: "fas fa-file-pdf",
+      color: "var(--secondary-color)"
+    },
+    {
       platform: "HTB Academy",
-      profileUrl: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4", //  my HTB profile URL
+      type: "profile",
+      profileUrl: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4",
       icon: "fas fa-cube",
       color: "#9FEF00"
     },
     {
       platform: "TryHackMe",
-      profileUrl: "https://tryhackme.com/r/p/anonymousx46", //  my TryHackMe profile URL
+      type: "profile",
+      profileUrl: "https://tryhackme.com/r/p/anonymousx46",
       icon: "fas fa-user-secret",
       color: "#CC0000"
     }
   ];
 
+  const renderCertificateCards = (certGroup) => {
+    switch (certGroup.type) {
+      case 'image':
+        return (
+          <div className="row g-4 justify-content-center">
+            {certGroup.certs.map((cert, index) => (
+              <div key={index} className="col-md-4">
+                <div className="card h-100" style={{
+                  background: 'var(--card-bg)',
+                  border: '1px solid var(--secondary-color)',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  <img 
+                    src={cert.image} 
+                    alt={cert.name}
+                    className="card-img-top"
+                    style={{
+                      maxHeight: '500px',
+                      minHeight: '300px',
+                      objectFit: 'contain',
+                      padding: '1.6rem'
+                    }}
+                  />
+                  <div className="card-body text-center">
+                    <h5 className="card-title" style={{ color: 'var(--secondary-color)' }}>{cert.name}</h5>
+                    <p className="card-text">Completed: {cert.date}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'pdf':
+        return (
+          <div className="row g-4 justify-content-center">
+            {certGroup.certs.map((cert, index) => (
+              <div key={index} className="col-md-6">
+                <div className="card h-100 project-card" style={{
+                  background: 'var(--card-bg)',
+                  border: '1px solid var(--secondary-color)',
+                  borderRadius: '10px',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                }}>
+                  <div className="card-body p-4">
+                    <div className="d-flex align-items-center mb-3">
+                      <i className="fas fa-certificate me-2" style={{ color: 'var(--secondary-color)' }}></i>
+                      <h5 className="card-title mb-0" style={{ color: 'var(--secondary-color)' }}>
+                        {cert.name}
+                      </h5>
+                    </div>
+                    <p className="card-text mt-3" style={{ color: 'var(--text-color)' }}>{cert.description}</p>
+                    <p className="text-muted">Completed: {cert.date}</p>
+                    <a 
+                      href={cert.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary mt-2"
+                      style={{
+                        background: 'transparent',
+                        border: '1px solid var(--secondary-color)',
+                        color: 'var(--secondary-color)',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      View Certificate <i className="fas fa-external-link-alt ms-2"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'profile':
+        return (
+          <div className="col-md-6">
+            <a 
+              href={certGroup.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-decoration-none"
+            >
+              <div className="card h-100 project-card" style={{
+                background: 'var(--card-bg)',
+                border: `1px solid ${certGroup.color}`,
+                borderRadius: '10px',
+                backdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease'
+              }}>
+                <div className="card-body text-center p-4">
+                  <i className={`${certGroup.icon} fa-3x mb-3 floating-icon`} style={{color: certGroup.color}}></i>
+                  <h4 className="card-title" style={{color: certGroup.color}}>{certGroup.platform}</h4>
+                  <p className="card-text mt-3">View my {certGroup.platform} profile</p>
+                  <button className="btn btn-primary mt-2" style={{
+                    borderColor: certGroup.color,
+                    color: certGroup.color
+                  }}>
+                    View Profile <i className="fas fa-external-link-alt ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </a>
+          </div>
+        );
+    }
+  };
+
   return (
     <section id="certificates" className="py-5">
       <div className="container">
-        <h2 className="text-center mb-5">
+        <h2 className="text-center mb-5" style={{ color: 'var(--secondary-color)' }}>
           <i className="fas fa-certificate me-2"></i>
           Certifications & Profiles
         </h2>
         
-        {/* Sololearn Certificates */}
-        <div className="row mb-5">
-          <div className="col-12">
+        {certificates.map((certGroup, index) => (
+          <div key={index} className="mb-5">
             <h3 className="text-center mb-4" style={{color: 'var(--secondary-color)'}}>
-              <i className="fas fa-award me-2"></i>
-              Sololearn Certificates
+              <i className={`${certGroup.icon} me-2`}></i>
+              {certGroup.platform}
             </h3>
-            <div className="row g-4 justify-content-center">
-              {certificates[0].certs.map((cert, index) => (
-                <div key={index} className="col-md-4">
-                  <div className="card h-100" style={{
-                    background: 'var(--card-bg)',
-                    border: '1px solid var(--secondary-color)',
-                    borderRadius: '10px',
-                    overflow: 'hidden'
-                  }}>
-                    <img 
-                      src={cert.image} 
-                      alt={cert.name}
-                      className="card-img-top"
-                      style={{
-                        maxHeight: '500px',
-						minHeight: '300px',
-                        objectFit: 'contain',
-                        padding: '1.6rem'
-                      }}
-                    />
-                    <div className="card-body text-center">
-                      <h5 className="card-title">{cert.name}</h5>
-                      <p className="card-text">Completed: {cert.date}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {renderCertificateCards(certGroup)}
           </div>
-        </div>
-
-        {/* Platform Profiles */}
-        <div className="row g-4">
-          {certificates.slice(1).map((platform, index) => (
-            <div key={index} className="col-md-6">
-              <a 
-                href={platform.profileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-decoration-none"
-              >
-                <div className="card h-100" style={{
-                  background: 'var(--card-bg)',
-                  border: `1px solid ${platform.color}`,
-                  borderRadius: '10px',
-                  transition: 'all 0.3s ease'
-                }}>
-                  <div className="card-body text-center p-4">
-                    <i className={`${platform.icon} fa-3x mb-3`} style={{color: platform.color}}></i>
-                    <h4 className="card-title" style={{color: platform.color}}>{platform.platform}</h4>
-                    <p className="card-text mt-3">View my {platform.platform} profile</p>
-                    <button className="btn btn-outline-primary mt-2" style={{
-                      borderColor: platform.color,
-                      color: platform.color
-                    }}>
-                      View Profile <i className="fas fa-external-link-alt ms-2"></i>
-                    </button>
-                  </div>
-                </div>
-              </a>
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
     </section>
   );
 };
+
+
 
 const ProjectsSection = () => {
   const projects = [

@@ -1658,135 +1658,108 @@ const SkillsSection = () => {
 
 
 
+
 const CertificatesSection = () => {
-  const certificates = [
+  const sololearnCertificates = [
     {
-      platform: "Sololearn",
-      type: "image",
-      certs: [
-        {
-          name: "Python Certificate", 
-          image: "/cert.jpg",
-          date: "2024"
-        },
-        {
-          name: "Web Development Certificate",
-          image: "/cert2.png",
-          date: "2024"
-        }
-      ],
-      icon: "fas fa-award",
-      color: "#149EF2"
+      name: "Python Certificate",
+      image: "/cert.jpg",
+      completed: "2024",
     },
     {
-      platform: "Professional Certifications",
-      type: "pdf",
-      certs: [
-        {
-          name: "Mastercard Cybersecurity Job Simulation",
-          pdfUrl: "/assets/MC-cert.pdf",
-          description: "Mastercard Cybersecurity virtual experience program on Forage.Completed a job simulation where I served as an analyst on Mastercard’s Security Awareness Team. Helped identify and report security threats such as phishing. Analyzed and identified which areas of the business needed more robust security training and implemented training courses and procedures for those teams.",
-          date: "January 2025"
-        },
-        {
-          name: "DATACOM Cybersecurity Job Simulation",
-          pdfUrl: "/assets/Datacom-cert.pdf",
-          description: "Datacom Cybersecurity Job Simulation on Forage. Completed a simulation focussed on how Datacom's cybersecurity team helps protect it's clients. Investigated a cyberattack and produced a comprehensive report documenting findings and outlining key recommendations to improve a client's cybersecurity posture. Conducted a comprehensive risk assessment.",
-          date: "January 2025"
-        },
-	{
-	 name: "PwC Cybersecurity Job Simulation",
-          pdfUrl: "/assets/PwC-cert.pdf",
-          description: "PwC Switzerland Cybersecurity Job Simulation on Forage. Completed a job simulation involving cybersecurity for PwC Digital Intelligence, gaining experience in understanding and explaining the concept of integrated defense. Developed expertise in integrated defense strategies and their application in real-world scenarios. Conducted risk assessments and formulated security recommendations for a client. Demonstrated proficiency in cybersecurity terminology, network segmentation, and firewall configuration.",
-          date: "January 2025"
-	},
-      ],
-      icon: "fas fa-file-pdf",
-      color: "var(--secondary-color)"
+      name: "Web Development Certificate",
+      image: "/cert2.png",
+      completed: "2024",
     },
+  ];
+
+  const professionalCertificates = [
+    {
+      name: "Mastercard Cybersecurity Job Simulation",
+      description: "Mastercard Cybersecurity virtual experience program on Forage. Helped identify and report security threats such as phishing...",
+      completed: "January 2025",
+      link: "/assets/MC-cert.pdf",
+    },
+    {
+      name: "Datacom Cybersecurity Job Simulation",
+      description: "Datacom Cybersecurity virtual experience program on Forage. Investigated a cyberattack and produced a comprehensive report documenting findings...",
+      completed: "January 2025",
+      link: "/assets/Datacom-cert.pdf",
+    },
+  ];
+
+  const profileLinks = [
     {
       platform: "HTB Academy",
-      type: "profile",
-      profileUrl: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4",
+      url: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4",
       icon: "fas fa-cube",
-      color: "#9FEF00"
+      color: "#9FEF00",
     },
     {
       platform: "TryHackMe",
-      type: "profile",
-      profileUrl: "https://tryhackme.com/r/p/anonymousx46",
+      url: "https://tryhackme.com/r/p/anonymousx46",
       icon: "fas fa-user-secret",
-      color: "#CC0000"
-    }
+      color: "#CC0000",
+    },
   ];
 
-  const renderCertificateCards = (certGroup) => {
-    switch (certGroup.type) {
-      case 'image':
-        return (
+  return (
+    <section id="certificates" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5" style={{ color: "var(--secondary-color)" }}>
+          <i className="fas fa-certificate me-2"></i>
+          Certifications & Profiles
+        </h2>
+
+        {/* Sololearn Certificates */}
+        <div className="mb-5">
+          <h3 className="text-center mb-4" style={{ color: "var(--secondary-color)" }}>
+            <i className="fas fa-award me-2"></i>
+            Sololearn Certificates
+          </h3>
           <div className="row g-4 justify-content-center">
-            {certGroup.certs.map((cert, index) => (
+            {sololearnCertificates.map((cert, index) => (
               <div key={index} className="col-md-4">
-                <div className="card h-100" style={{
-                  background: 'var(--card-bg)',
-                  border: '1px solid var(--secondary-color)',
-                  borderRadius: '10px',
-                  overflow: 'hidden',
-                  backdropFilter: 'blur(10px)'
-                }}>
+                <div className="card h-100" style={{ background: "var(--card-bg)", border: "1px solid var(--secondary-color)", borderRadius: "10px", overflow: "hidden", backdropFilter: "blur(10px)" }}>
                   <img 
                     src={cert.image} 
-                    alt={cert.name}
-                    className="card-img-top"
-                    style={{
-                      maxHeight: '500px',
-                      minHeight: '300px',
-                      objectFit: 'contain',
-                      padding: '1.6rem'
-                    }}
+                    alt={cert.name} 
+                    className="card-img-top" 
+                    style={{ maxHeight: "300px", objectFit: "contain", padding: "1rem" }}
                   />
                   <div className="card-body text-center">
-                    <h5 className="card-title" style={{ color: 'var(--secondary-color)' }}>{cert.name}</h5>
-                    <p className="card-text">Completed: {cert.date}</p>
+                    <h5 className="card-title" style={{ color: "var(--secondary-color)" }}>{cert.name}</h5>
+                    <p className="card-text">Completed: {cert.completed}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        );
+        </div>
 
-      case 'pdf':
-        return (
-          <div className="row g-4 justify-content-center">
-            {certGroup.certs.map((cert, index) => (
+        {/* Professional Certifications */}
+        <div className="mb-5">
+          <h3 className="text-center mb-4" style={{ color: "var(--secondary-color)" }}>
+            <i className="fas fa-file-pdf me-2"></i>
+            Professional Certifications
+          </h3>
+          <div className="row g-4">
+            {professionalCertificates.map((cert, index) => (
               <div key={index} className="col-md-6">
-                <div className="card h-100 project-card" style={{
-                  background: 'var(--card-bg)',
-                  border: '1px solid var(--secondary-color)',
-                  borderRadius: '10px',
-                  backdropFilter: 'blur(10px)',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-                }}>
+                <div className="card h-100 project-card" style={{ background: "var(--card-bg)", border: "1px solid var(--secondary-color)", borderRadius: "10px" }}>
                   <div className="card-body p-4">
                     <div className="d-flex align-items-center mb-3">
-                      <i className="fas fa-certificate me-2" style={{ color: 'var(--secondary-color)' }}></i>
-                      <h5 className="card-title mb-0" style={{ color: 'var(--secondary-color)' }}>
-                        {cert.name}
-                      </h5>
+                      <i className="fas fa-certificate me-2" style={{ color: "var(--secondary-color)" }}></i>
+                      <h5 className="card-title mb-0" style={{ color: "var(--secondary-color)" }}>{cert.name}</h5>
                     </div>
-                    <p className="card-text mt-3" style={{ color: 'var(--text-color)' }}>{cert.description}</p>
-                    <p className="text-muted">Completed: {cert.date}</p>
+                    <p className="card-text mt-3">{cert.description}</p>
+                    <p className="text-muted">Completed: {cert.completed}</p>
                     <a 
-                      href={cert.pdfUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary mt-2"
-                      style={{
-                        background: 'transparent',
-                        border: '1px solid var(--secondary-color)',
-                        color: 'var(--secondary-color)',
-                        transition: 'all 0.3s ease'
-                      }}
+                      href={cert.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="btn btn-primary mt-2" 
+                      style={{ background: "transparent", border: "1px solid var(--secondary-color)", color: "var(--secondary-color)" }}
                     >
                       View Certificate <i className="fas fa-external-link-alt ms-2"></i>
                     </a>
@@ -1795,59 +1768,32 @@ const CertificatesSection = () => {
               </div>
             ))}
           </div>
-        );
+        </div>
 
-      case 'profile':
-        return (
-          <div className="col-md-6">
-            <a 
-              href={certGroup.profileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-decoration-none"
-            >
-              <div className="card h-100 project-card" style={{
-                background: 'var(--card-bg)',
-                border: `1px solid ${certGroup.color}`,
-                borderRadius: '10px',
-                backdropFilter: 'blur(10px)',
-                transition: 'all 0.3s ease'
-              }}>
-                <div className="card-body text-center p-4">
-                  <i className={`${certGroup.icon} fa-3x mb-3 floating-icon`} style={{color: certGroup.color}}></i>
-                  <h4 className="card-title" style={{color: certGroup.color}}>{certGroup.platform}</h4>
-                  <p className="card-text mt-3">View my {certGroup.platform} profile</p>
-                  <button className="btn btn-primary mt-2" style={{
-                    borderColor: certGroup.color,
-                    color: certGroup.color
-                  }}>
-                    View Profile <i className="fas fa-external-link-alt ms-2"></i>
-                  </button>
+        {/* Profile Links */}
+        <div className="row g-4">
+          {profileLinks.map((profile, index) => (
+            <div key={index} className="col-md-6">
+              <a 
+                href={profile.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-decoration-none"
+              >
+                <div className="card h-100 project-card" style={{ background: "var(--card-bg)", border: `1px solid ${profile.color}`, borderRadius: "10px" }}>
+                  <div className="card-body text-center p-4">
+                    <i className={`${profile.icon} fa-3x mb-3 floating-icon`} style={{ color: profile.color }}></i>
+                    <h4 className="card-title" style={{ color: profile.color }}>{profile.platform}</h4>
+                    <p className="card-text mt-3">View my {profile.platform} profile</p>
+                    <button className="btn btn-outline-primary mt-2" style={{ borderColor: profile.color, color: profile.color }}>
+                      View Profile <i className="fas fa-external-link-alt ms-2"></i>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </a>
-          </div>
-        );
-    }
-  };
-
-  return (
-    <section id="certificates" className="py-5">
-      <div className="container">
-        <h2 className="text-center mb-5" style={{ color: 'var(--secondary-color)' }}>
-          <i className="fas fa-certificate me-2"></i>
-          Certifications & Profiles
-        </h2>
-        
-        {certificates.map((certGroup, index) => (
-          <div key={index} className="mb-5">
-            <h3 className="text-center mb-4" style={{color: 'var(--secondary-color)'}}>
-              <i className={`${certGroup.icon} me-2`}></i>
-              {certGroup.platform}
-            </h3>
-            {renderCertificateCards(certGroup)}
-          </div>
-        ))}
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

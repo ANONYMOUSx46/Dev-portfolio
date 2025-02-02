@@ -21,7 +21,9 @@
 
 <!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
+ 
+<script src="https://unpkg.com/react-modal@3.14.4/dist/react-modal.min.js"></script>
+  
 <style>
 :root {
   /* Dark theme (default) */
@@ -701,12 +703,12 @@ const CertificatesSection = () => {
           Certifications & Profiles
         </h2>
         
-        {/* Sololearn Certificates */}
+        {/* All Certificates */}
         <div className="row mb-5">
           <div className="col-12">
             <h3 className="text-center mb-4" style={{color: 'var(--secondary-color)'}}>
               <i className="fas fa-award me-2"></i>
-              Sololearn Certificates
+              All Professional Certificates
             </h3>
             <div className="row g-4 justify-content-center">
               {certificates[0].certs.map((cert, index) => (
@@ -1018,6 +1020,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Particles.js -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script src="https://unpkg.com/react-modal@3.14.4/dist/react-modal.min.js"></script>
 
 <style>
 :root {
@@ -1566,7 +1570,7 @@ const AboutSection = () => {
           <div className="col-lg-8 mx-auto">
             <p className="lead text-center">
 		My name is Liam De Wet, a High school student(18 years old) currently in Grade 12 with a STRONG passion for the progressing world of Technology, indulging in the topics I enjoy the most. I'm enhancing my skills in Cyber Security through various courses, focusing on ethical hacking. 
-              	    Currently learning from platforms like HTB Academy and TryHackMe.
+              	    Currently learning from platforms like HTB Academy, Forage, Cisco Networking Academy, Cybersecurity courses on Alison.com and TryHackMe.
             </p>
             <div className="text-center mt-4">
               <div className="badge bg-primary m-1">Ethical Hacking</div>
@@ -1637,7 +1641,7 @@ const SkillsSection = () => {
       <div className="container">
         <h2 className="text-center mb-5">
           <i className="fas fa-laptop-code me-2"></i>
-          Skills & Technologies
+          Skills I have in the various Technologies:
         </h2>
         <div className="row g-4">
           {skills.map((skill, index) => (
@@ -1656,11 +1660,8 @@ const SkillsSection = () => {
   );
 };
 
-
-
-
 const CertificatesSection = () => {
-  const sololearnCertificates = [
+  const AllCertificates = [
     {
       name: "Python Certificate",
       image: "/cert.jpg",
@@ -1671,53 +1672,44 @@ const CertificatesSection = () => {
       image: "/cert2.png",
       completed: "2024",
     },
-  ];
-
-  const professionalCertificates = [
-    {
-      name: "Mastercard Cybersecurity Job Simulation",
-      description: "Mastercard Cybersecurity virtual experience program on Forage. Helped identify and report security threats such as phishing...",
-      completed: "January 2025",
-      link: "/assets/MC-cert.pdf",
-    },
-    {
-      name: "Datacom Cybersecurity Job Simulation",
-      description: "Datacom Cybersecurity virtual experience program on Forage. Investigated a cyberattack and produced a comprehensive report documenting findings...",
-      completed: "January 2025",
-      link: "/assets/Datacom-cert.pdf",
-    },
-    {
-      name: "PwC Cybersecurity Job Simulation",
-      description: "PwC Switzerland Cybersecurity Job Simulation on Forage. Completed a job simulation involving cybersecurity for PwC Digital Intelligence. Conducted risk assessments and formulated security recommendations for a client. Demonstrated proficiency in cybersecurity terminology, network segmentation, and firewall configuration.",
-      completed: "January 2025",
-      link: "/assets/PwC-cert.pdf",
-    },
 	{
-      name: "TATA Cybersecurity Job Simulation",
-      description: "Tata Cybersecurity Security Analyst Job Simulation on Forage. Completed a job simulation involving identity and access management (IAM) for Tata Consultancy Services, collaborating with a Cybersecurity Consulting team...",
-      completed: "January 2025",
-      link: "/assets/TATA-cert.pdf",
-    },
-	 {
-      name: "ANZ Cybersecurity Job Simulation",
-      description: "ANZ Australia Cyber Security Management Job Simulation on Forage. Completed a simulation focussed on identifying cybersecurity threats at ANZ. Investigated e-mails to report suspicious items. Analysed a Packet Capture file using an open source tool to identify and investigate any potential threats.",
-      completed: "January 2025",
-      link: "/assets/AZN-cert.pdf",
-    },
-	 {
-      name: "AIG Cybersecurity Job Simulation",
-      description: "AIG Shields Up: Cybersecurity virtual experience program on Forage. Completed a cybersecurity threat analysis simulation for the Cyber Defense Unit, staying updated on CISA publications. Researched and understood reported vulnerabilities, showcasing analytical skills in cybersecurity. Drafted a clear and concise email to guide teams on vulnerability remediation. Utilized Python skills to write a script for ethical hacking, avoiding ransom payments by bruteforcing decryption keys.",
-      completed: "January 2025",
-      link: "/assets/AIG-cert.pdf",
-    },
- 	{
-      name: "Telstra Cybersecurity Job Simulation",
-      description: "Telstra Cybersecurity virtual experience program on Forage. Completed a cybersecurity malware analysis, analysing the attack and technically mitigating the attack using my Python skills to develop a Firewall Server Rule and finally conducting an incident postmortem on the attack.",
-      completed: "January 2025",
-      link: "/assets/Telstra-cert.pdf",
-    },
+		name: "PwC Cybersecurity Job Simulation Certificate. PwC Switzerland Cybersecurity virtual experience program on Forage. Conducted risk assessments, formulated security recommendations, and demonstrated proficiency in cybersecurity concepts, network segmentation, and firewall configuration...",
+		image: "/PwC-cert.jpg",
+		completed: "2025"
+	},
+	{
+		name: "Datacom Cybersecurity Job Simulation Certificate. Datacom Cybersecurity virtual experience program on Forage. Investigated a cyberattack and produced a comprehensive report documenting findings...",
+		image: "/Datacom-cert.jpg",
+		completed: "2025"
+	},
+	{
+		name: "Mastercard Cybersecurity Job Simulation Certificate. Mastercard Cybersecurity virtual experience program on Forage. Helped identify and report security threats such as phishing...",
+		image: "/MC-cert.jpg",
+		completed: "2025"
+	},
+	{
+		name: "TATA Cybersecurity Job Simulation Certificate. Security Analyst Job Simulation on Forage. Completed a job simulation involving identity and access management (IAM) for Tata Consultancy Services, collaborating with a Cybersecurity Consulting team...",
+		image: "/TATA-cert.jpg",
+		completed: "2025"
+	},
+	{
+		name: "ANZ Cybersecurity Job Simulation Certificate. ANZ Australia Cybersecurity virtual experience program on Forage. Identified cybersecurity threats, investigated suspicious emails, and analyzed packet capture files to detect potential threats...",
+		image: "/AZN-cert.jpg",
+		completed: "2025"
+	},
+	{
+		name: "AIG Cybersecurity Job Simulation Certificate. AIG Shields Up Cybersecurity virtual experience program on Forage. Conducted threat analysis, researched vulnerabilities, and provided remediation guidance. Utilized Python for ethical hacking, developing a script to brute-force decryption keys...",
+		image: "/AIG-cert.jpg",
+		completed: "2025"
+	},
+	{
+		name: "Telstra Cybersecurity Job Simulation Certificate.Telstra Cybersecurity virtual experience program on Forage. Conducted malware analysis, mitigated attacks by developing a firewall server rule using Python, and performed an incident postmortem...",
+		image: "/Telstra-cert.jpg",
+		completed: "2025"
+	}
+	
   ];
-
+  
   const profileLinks = [
     {
       platform: "HTB Academy",
@@ -1741,21 +1733,21 @@ const CertificatesSection = () => {
           Certifications & Profiles
         </h2>
 
-        {/* Sololearn Certificates */}
+        {/* All Certificates */}
         <div className="mb-5">
           <h3 className="text-center mb-4" style={{ color: "var(--secondary-color)" }}>
             <i className="fas fa-award me-2"></i>
-            Sololearn Certificates
+            All Professional Certificates I have acquired thus far:
           </h3>
           <div className="row g-4 justify-content-center">
-            {sololearnCertificates.map((cert, index) => (
+            {AllCertificates.map((cert, index) => (
               <div key={index} className="col-md-4">
                 <div className="card h-100" style={{ background: "var(--card-bg)", border: "1px solid var(--secondary-color)", borderRadius: "10px", overflow: "hidden", backdropFilter: "blur(10px)" }}>
                   <img 
                     src={cert.image} 
                     alt={cert.name} 
                     className="card-img-top" 
-                    style={{ maxHeight: "300px", objectFit: "contain", padding: "1rem" }}
+                    style={{ maxHeight: "700px", objectFit: "contain", padding: "1rem" }}
                   />
                   <div className="card-body text-center">
                     <h5 className="card-title" style={{ color: "var(--secondary-color)" }}>{cert.name}</h5>
@@ -1767,38 +1759,7 @@ const CertificatesSection = () => {
           </div>
         </div>
 
-        {/* Professional Certifications */}
-        <div className="mb-5">
-          <h3 className="text-center mb-4" style={{ color: "var(--secondary-color)" }}>
-            <i className="fas fa-file-pdf me-2"></i>
-            Professional Certifications
-          </h3>
-          <div className="row g-4">
-            {professionalCertificates.map((cert, index) => (
-              <div key={index} className="col-md-6">
-                <div className="card h-100 project-card" style={{ background: "var(--card-bg)", border: "1px solid var(--secondary-color)", borderRadius: "10px" }}>
-                  <div className="card-body p-4">
-                    <div className="d-flex align-items-center mb-3">
-                      <i className="fas fa-certificate me-2" style={{ color: "var(--secondary-color)" }}></i>
-                      <h5 className="card-title mb-0" style={{ color: "var(--secondary-color)" }}>{cert.name}</h5>
-                    </div>
-                    <p className="card-text mt-3">{cert.description}</p>
-                    <p className="text-muted">Completed: {cert.completed}</p>
-                    <a 
-                      href={cert.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="btn btn-primary mt-2" 
-                      style={{ background: "transparent", border: "1px solid var(--secondary-color)", color: "var(--secondary-color)" }}
-                    >
-                      View Certificate <i className="fas fa-external-link-alt ms-2"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* Profile Links */}
         <div className="row g-4">

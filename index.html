@@ -1585,98 +1585,78 @@ const AboutSection = () => {
 };
 
 const SkillsSection = () => {
-  const skills = [
-    { 
-      name: "Python", 
-      icon: "fab fa-python", 
-      url: "https://www.python.org/" // Official Python site
-    },
-    { 
-      name: "Linux", 
-      icon: "fab fa-linux", 
-      url: "https://www.linux.org/" // Official Linux site
-    },
-    { 
-      name: "AWS Cloud", 
-      icon: "fab fa-aws", 
-      url: "https://aws.amazon.com/" // Official AWS site
-    },
-    { 
-      name: "Docker", 
-      icon: "fab fa-docker", 
-      url: "https://www.docker.com/" // Official Docker site
-    },
-    { 
-      name: "Git", 
-      icon: "fab fa-git-alt", 
-      url: "https://git-scm.com/" // Official Git site
-    },
-    { 
-      name: "Node.js", 
-      icon: "fab fa-node-js", 
-      url: "https://nodejs.org/" // Official Node.js site
-    },
-    { 
-      name: "Shell Scripting", 
-      icon: "fas fa-terminal", 
-      url: "https://www.gnu.org/software/bash/" // Bash scripting reference
-    },
-    { 
-      name: "Networking", 
-      icon: "fas fa-network-wired", 
-      url: "https://en.wikipedia.org/wiki/Computer_network" // Networking overview
-    },
-    { 
-      name: "Web Security", 
-      icon: "fas fa-shield-alt", 
-      url: "https://owasp.org/" // OWASP for web security
-    },
-    { 
-      name: "Encryption", 
-      icon: "fas fa-key", 
-      url: "https://en.wikipedia.org/wiki/Encryption" // Encryption overview
-    },
-    { 
-      name: "Windows", 
-      icon: "fab fa-windows", 
-      url: "https://www.microsoft.com/windows" // Official Windows site
-    },
-    { 
-      name: "Kali Linux", 
-      icon: "fab fa-linux", 
-      url: "https://www.kali.org/" // Official Kali Linux site
-    }
-  ];
-
-  return (
-    <section id="skills" className="py-5">
-      <div className="container">
-        <h2 className="text-center mb-5">
-          <i className="fas fa-laptop-code me-2"></i>
-          Skills I have in the various Technologies:
-        </h2>
-        <div className="row g-4">
-          {skills.map((skill, index) => (
-            <div key={index} className="col-md-3 col-sm-6">
-              {/* Make each skill clickable */}
-              <a 
-                href={skill.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{ textDecoration: "none" }}
-              >
-                <div className="skill-card h-100 d-flex flex-column justify-content-center align-items-center p-3" 
-                     style={{ border: "1px solid #ddd", borderRadius: "8px", transition: "transform 0.2s", cursor: "pointer" }}>
-                  <i className={`${skill.icon} fa-3x mb-3`} style={{ color: "#007bff" }}></i>
-                  <h5 className="card-title text-center">{skill.name}</h5>
-                </div>
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+const skills = [
+{
+name: "Python",
+icon: "fab fa-python" // Python logo
+},
+{
+name: "Linux",
+icon: "fab fa-linux" // Linux logo
+},
+{
+name: "AWS Cloud",
+icon: "fab fa-aws" // AWS logo
+},
+{
+name: "Docker",
+icon: "fab fa-docker" // Docker logo
+},
+{
+name: "Git",
+icon: "fab fa-git-alt" // Git logo
+},
+{
+name: "Node.js",
+icon: "fab fa-node-js" // Node.js logo
+},
+{
+name: "Shell Scripting",
+icon: "fas fa-terminal" // Terminal icon for shell
+},
+{
+name: "Networking",
+icon: "fas fa-network-wired" // Network icon
+},
+{
+name: "Web Security",
+icon: "fas fa-shield-alt" // Security shield
+},
+{
+name: "Encryption",
+icon: "fas fa-key" // Key/encryption icon
+},
+{
+name: "Windows",
+icon: "fab fa-windows" // Windows logo
+},
+{
+name: "Kali Linux",
+icon: "fab fa-linux" // Linux logo for Kali
+}
+];
+return (
+<section id="skills" className="py-5">
+<div className="container">
+<h2 className="text-center mb-5">
+<i className="fas fa-laptop-code me-2"></i>
+Skills I have in the various Technologies:
+</h2>
+<div className="row g-4">
+{skills.map((skill, index) => (
+<div key={index} className="col-md-3 col-sm-6">
+<div className="skill-card h-100">
+<div className="text-center">
+<i className={${skill.icon} fa-3x mb-3}></i>
+<h5 className="card-title">{skill.name}</h5>
+</div>
+</div>
+</div>
+))}
+</div>
+</div>
+</section>
+);
 };
 
 const CertificatesSection = () => {

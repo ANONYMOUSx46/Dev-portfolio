@@ -1804,11 +1804,11 @@ const ProjectsSection = () => {
     },
     {
       title: "Secure Web Application Platform",
-      description: "Developed and implemented a web application specifcally for Mobile browsing with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
+      description: "Developed and implemented a web application specifically for Mobile browsing with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
       tech: ["React", "Node.js", "Security Protocols"],
       icon: "fas fa-shield-alt",
       color: "#4169e1",
-      url: "https://moodring-sync.netlify.app" // Replace with actual URL
+      url: "https://holy-redeemer-confirmation.netlify.app" // Replace with actual URL
     },
     {
       title: "Security Tool Development",
@@ -1830,30 +1830,26 @@ const ProjectsSection = () => {
         <div className="row g-4">
           {projects.map((project, index) => (
             <div key={index} className="col-lg-4">
-              {project.url ? (
-                // Clickable card for projects with URLs
-                <a 
-                  href={project.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ textDecoration: "none" }}
-                >
-                  <div 
-                    className="project-card h-100"
-                    style={{ cursor: "pointer", position: "relative" }}
-                  >
-                    <CardContent project={project} />
+              <div 
+                className="project-card h-100"
+                style={{ position: "relative" }}
+              >
+                <CardContent project={project} />
+                {/* Add a "View Project" button if the project has a URL */}
+                {project.url && (
+                  <div className="text-center mt-3">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{ background: project.color, borderColor: project.color }}
+                    >
+                      View Project
+                    </a>
                   </div>
-                </a>
-              ) : (
-                // Non-clickable card for projects without URLs
-                <div 
-                  className="project-card h-100"
-                  style={{ cursor: "default", position: "relative", opacity: 0.8 }}
-                >
-                  <CardContent project={project} />
-                </div>
-              )}
+                )}
+              </div>
             </div>
           ))}
         </div>

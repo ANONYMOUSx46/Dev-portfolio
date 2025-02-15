@@ -1397,11 +1397,70 @@ section {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
+
+/* Hide the default cursor */
+body {
+  cursor: none;
+}
+
+/* Custom Cursor */
+#custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: #007bff; /* Base color matching your theme */
+  border-radius: 50%; /* Circular shape */
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Ensure it doesn't block clicks */
+  z-index: 9999;
+  transition: all 0.1s ease; /* Smooth transitions */
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.8); /* Glow effect */
+}
+
+/* Cursor Trail Container */
+#cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+/* Individual Trail Elements */
+.trail {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #007bff; /* Match the cursor color */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  animation: fade-out 0.6s ease forwards; /* Adjust animation duration */
+}
+
+/* Fade-Out Animation */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
 </style>
 </head>
 <body>
 
 <div id="root"></div>
+
+<div id="custom-cursor"></div>
+<div id="cursor-trail"></div>
 
 <script type="text/babel">
 const ThemeToggle = () => {
@@ -2060,6 +2119,84 @@ document.addEventListener('DOMContentLoaded', function() {
     retina_detect: true
   });
 });
+
+// Fading Trail Cursor Script
+document.addEventListener("DOMContentLoaded", () => {
+  const customCursor = document.getElementById("custom-cursor");
+  const cursorTrail = document.getElementById("cursor-trail");
+
+  // Variables to track cursor position
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  // Smoothing factor (lower = smoother, higher = faster)
+  const speedFactor = 0.1;
+
+  // Throttle the creation of trail elements
+  let lastTrailTime = 0;
+  const trailInterval = 100; // Create a new trail every 100ms
+
+  // Track mouse movement
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // Throttle trail creation
+    const now = Date.now();
+    if (now - lastTrailTime > trailInterval) {
+      lastTrailTime = now;
+
+      // Create a new trail element
+      const trailElement = document.createElement("div");
+      trailElement.classList.add("trail");
+      trailElement.style.left = `${mouseX}px`;
+      trailElement.style.top = `${mouseY}px`;
+      cursorTrail.appendChild(trailElement);
+
+      // Remove the trail element after the animation ends
+      setTimeout(() => {
+        trailElement.remove();
+      }, 600); // Match the duration of the fade-out animation (0.6s)
+    }
+  });
+
+  // Update cursor position with smoothing
+  function updateCursor() {
+    // Interpolate cursor position
+    cursorX += (mouseX - cursorX) * speedFactor;
+    cursorY += (mouseY - cursorY) * speedFactor;
+
+    // Update the custom cursor's position
+    customCursor.style.left = `${cursorX}px`;
+    customCursor.style.top = `${cursorY}px`;
+
+    // Request the next animation frame
+    requestAnimationFrame(updateCursor);
+  }
+
+  // Start the animation loop
+  updateCursor();
+
+  // Add hover effects for interactive elements
+  document.querySelectorAll("a, button, .clickable").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      customCursor.style.width = "40px";
+      customCursor.style.height = "40px";
+      customCursor.style.background = "#ff4500"; // Change color on hover
+      customCursor.style.boxShadow = "0 0 20px rgba(255, 69, 0, 0.8)"; // Enhanced glow
+    });
+
+    el.addEventListener("mouseleave", () => {
+      customCursor.style.width = "20px";
+      customCursor.style.height = "20px";
+      customCursor.style.background = "#007bff"; // Reset color
+      customCursor.style.boxShadow = "0 0 10px rgba(0, 123, 255, 0.8)"; // Reset glow
+    });
+  });
+});
+
 </script>
 
 </body>

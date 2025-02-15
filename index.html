@@ -1585,78 +1585,79 @@ const AboutSection = () => {
 };
 
 const SkillsSection = () => {
-const skills = [
-{
-name: "Python",
-icon: "fab fa-python" // Python logo
-},
-{
-name: "Linux",
-icon: "fab fa-linux" // Linux logo
-},
-{
-name: "AWS Cloud",
-icon: "fab fa-aws" // AWS logo
-},
-{
-name: "Docker",
-icon: "fab fa-docker" // Docker logo
-},
-{
-name: "Git",
-icon: "fab fa-git-alt" // Git logo
-},
-{
-name: "Node.js",
-icon: "fab fa-node-js" // Node.js logo
-},
-{
-name: "Shell Scripting",
-icon: "fas fa-terminal" // Terminal icon for shell
-},
-{
-name: "Networking",
-icon: "fas fa-network-wired" // Network icon
-},
-{
-name: "Web Security",
-icon: "fas fa-shield-alt" // Security shield
-},
-{
-name: "Encryption",
-icon: "fas fa-key" // Key/encryption icon
-},
-{
-name: "Windows",
-icon: "fab fa-windows" // Windows logo
-},
-{
-name: "Kali Linux",
-icon: "fab fa-linux" // Linux logo for Kali
-}
-];
-return (
-<section id="skills" className="py-5">
-<div className="container">
-<h2 className="text-center mb-5">
-<i className="fas fa-laptop-code me-2"></i>
-Skills I have in the various Technologies:
-</h2>
-<div className="row g-4">
-{skills.map((skill, index) => (
-<div key={index} className="col-md-3 col-sm-6">
-<div className="skill-card h-100">
-<div className="text-center">
-<i className={${skill.icon} fa-3x mb-3}></i>
-<h5 className="card-title">{skill.name}</h5>
-</div>
-</div>
-</div>
-))}
-</div>
-</div>
-</section>
-);
+  const skills = [
+    { 
+      name: "Python", 
+      icon: "fab fa-python"  // Python logo
+    },
+    { 
+      name: "Linux", 
+      icon: "fab fa-linux"  // Linux logo
+    },
+    { 
+      name: "AWS Cloud", 
+      icon: "fab fa-aws"  // AWS logo
+    },
+    { 
+      name: "Docker", 
+      icon: "fab fa-docker"  // Docker logo
+    },
+    { 
+      name: "Git", 
+      icon: "fab fa-git-alt"  // Git logo
+    },
+    { 
+      name: "Node.js", 
+      icon: "fab fa-node-js"  // Node.js logo
+    },
+    { 
+      name: "Shell Scripting", 
+      icon: "fas fa-terminal"  // Terminal icon for shell
+    },
+    { 
+      name: "Networking", 
+      icon: "fas fa-network-wired"  // Network icon
+    },
+    { 
+      name: "Web Security", 
+      icon: "fas fa-shield-alt"  // Security shield
+    },
+    { 
+      name: "Encryption", 
+      icon: "fas fa-key"  // Key/encryption icon
+    },
+    { 
+      name: "Windows", 
+      icon: "fab fa-windows"  // Windows logo
+    },
+    { 
+      name: "Kali Linux", 
+      icon: "fab fa-linux"  // Linux logo for Kali
+    }
+  ];
+
+  return (
+    <section id="skills" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">
+          <i className="fas fa-laptop-code me-2"></i>
+          Skills I have in the various Technologies:
+        </h2>
+        <div className="row g-4">
+          {skills.map((skill, index) => (
+            <div key={index} className="col-md-3 col-sm-6">
+              <div className="skill-card h-100">
+                <div className="text-center">
+                  <i className={`${skill.icon} fa-3x mb-3`}></i>
+                  <h5 className="card-title">{skill.name}</h5>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 const CertificatesSection = () => {
@@ -1803,8 +1804,8 @@ const ProjectsSection = () => {
     },
     {
       title: "Secure Web Application Platform",
-      description: "Developed a web application for Desktop and Mobile browsing with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection). For more information on this website visit my Github account",
-      tech: ["React", "Typescript" "Node.js", "Security Protocols"],
+      description: "Developed and implemented a web application specifically for Mobile browsing with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
+      tech: ["React", "Node.js", "Security Protocols"],
       icon: "fas fa-shield-alt",
       color: "#4169e1",
       url: "https://holy-redeemer-confirmation.netlify.app" // Replace with actual URL

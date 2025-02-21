@@ -1453,6 +1453,14 @@ body {
   }
 }
 
+/* Add custom cursor for buttons and other interactive elements */
+button,
+.clickable,
+a {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z'/%3E%3C/svg%3E"), auto;
+}
+	
+
 </style>
 </head>
 <body>
@@ -2124,61 +2132,49 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", () => {
   const customCursor = document.getElementById("custom-cursor");
   const cursorTrail = document.getElementById("cursor-trail");
-
   // Variables to track cursor position
   let mouseX = 0;
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
-
   // Smoothing factor (lower = smoother, higher = faster)
   const speedFactor = 0.1;
-
   // Throttle the creation of trail elements
   let lastTrailTime = 0;
   const trailInterval = 100; // Create a new trail every 100ms
-
   // Track mouse movement
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-
     // Throttle trail creation
     const now = Date.now();
     if (now - lastTrailTime > trailInterval) {
       lastTrailTime = now;
-
       // Create a new trail element
       const trailElement = document.createElement("div");
       trailElement.classList.add("trail");
       trailElement.style.left = `${mouseX}px`;
       trailElement.style.top = `${mouseY}px`;
       cursorTrail.appendChild(trailElement);
-
       // Remove the trail element after the animation ends
       setTimeout(() => {
         trailElement.remove();
       }, 600); // Match the duration of the fade-out animation (0.6s)
     }
   });
-
   // Update cursor position with smoothing
   function updateCursor() {
     // Interpolate cursor position
     cursorX += (mouseX - cursorX) * speedFactor;
     cursorY += (mouseY - cursorY) * speedFactor;
-
     // Update the custom cursor's position
     customCursor.style.left = `${cursorX}px`;
     customCursor.style.top = `${cursorY}px`;
-
     // Request the next animation frame
     requestAnimationFrame(updateCursor);
   }
-
   // Start the animation loop
   updateCursor();
-
   // Add hover effects for interactive elements
   document.querySelectorAll("a, button, .clickable").forEach((el) => {
     el.addEventListener("mouseenter", () => {
@@ -2186,13 +2182,14 @@ document.addEventListener("DOMContentLoaded", () => {
       customCursor.style.height = "40px";
       customCursor.style.background = "#ff4500"; // Change color on hover
       customCursor.style.boxShadow = "0 0 20px rgba(255, 69, 0, 0.8)"; // Enhanced glow
+      customCursor.style.animation = "spin 1s infinite linear"; // Add spin animation on hover
     });
-
     el.addEventListener("mouseleave", () => {
       customCursor.style.width = "20px";
       customCursor.style.height = "20px";
       customCursor.style.background = "#007bff"; // Reset color
       customCursor.style.boxShadow = "0 0 10px rgba(0, 123, 255, 0.8)"; // Reset glow
+      customCursor.style.animation = ""; // Remove spin animation on leave
     });
   });
 });

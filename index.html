@@ -778,6 +778,8 @@ const CertificatesSection = () => {
 };
 
 
+
+
 const ProjectsSection = () => {
   const projects = [
     {
@@ -785,73 +787,54 @@ const ProjectsSection = () => {
       description: "Conducted comprehensive network security assessment using industry-standard penetration testing methodologies. Identified and documented vulnerabilities while following ethical hacking practices.",
       tech: ["Penetration Testing", "Network Security", "Risk Assessment"],
       icon: "fas fa-network-wired",
-      color: "#00ff7f"
+      color: "#00ff7f",
+      url: null
     },
     {
       title: "Secure Web Application Platform",
-      description: "Developed and implemented a secure web application with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
+      description: "Developed and implemented a web application I made specifically for my Church Confirmation group, with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
       tech: ["React", "Node.js", "Security Protocols"],
       icon: "fas fa-shield-alt",
-      color: "#4169e1"
+      color: "#4169e1",
+      image: "secure-app.png",
+      url: "https://holy-redeemer-confirmation.netlify.app"
     },
     {
       title: "Security Tool Development",
-      description: "Created custom security tools for automated vulnerability scanning and threat detection. Implemented machine learning algorithms for anomaly detection.",
+      description: "Created a custom security tool for automated vulnerability scanning and threat detection. Implemented machine learning algorithms for anomaly detection. * Side note: Hosted on my github account along with many of my other projects, ANONYMOUSx46",
       tech: ["Python", "AI/ML", "Automation"],
       icon: "fas fa-tools",
-      color: "#ff4500"
+      color: "#ff4500",
+      image: "security-tool.png",
+      url: "https://github.com/ANONYMOUSx46/python-security-tool"
     }
   ];
 
   return (
     <section id="projects" className="py-5">
       <div className="container">
-        <h2 className="text-center mb-5">
-          <i className="fas fa-project-diagram me-2"></i>
-          Featured Projects
-        </h2>
+        <h2 className="text-center mb-5">Featured Projects</h2>
         <div className="row g-4">
           {projects.map((project, index) => (
-            <div key={index} className="col-lg-4">
-              <div className="project-card h-100">
-                <div className="card-body d-flex flex-column">
-                  <div className="text-center mb-4">
-                    <div className="icon-circle mb-3" 
-                         style={{
-                           background: `linear-gradient(135deg, ${project.color}22, ${project.color}11)`,
-                           width: '80px',
-                           height: '80px',
-                           borderRadius: '50%',
-                           display: 'inline-flex',
-                           alignItems: 'center',
-                           justifyContent: 'center',
-                           border: `2px solid ${project.color}`,
-                         }}>
-                      <i className={`${project.icon} fa-2x`} 
-                         style={{color: project.color}}></i>
-                    </div>
-                    <h4 className="card-title mb-3">{project.title}</h4>
-                  </div>
-                  <p className="card-text flex-grow-1">{project.description}</p>
-                  <div className="mt-4">
-                    <hr style={{borderColor: 'var(--secondary-color)'}} />
-                    <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
-                      {project.tech.map((tech, i) => (
-                        <span key={i} 
-                              className="badge"
-                              style={{
-                                background: `${project.color}22`,
-                                color: project.color,
-                                border: `1px solid ${project.color}`,
-                                padding: '8px 16px',
-                                fontSize: '0.85rem'
-                              }}>
-                          {tech}
-                        </span>
-                      ))}
+            <div key={index} className="col-lg-6">
+              <div className="project-card h-100 position-relative">
+                {project.image ? (
+                  <div className="project-image-wrapper">
+                    <img src={project.image} loading="lazy" className="img-fluid project-image" alt={project.title} />
+                    <div className="project-overlay">
+                      <p className="project-description">{project.description}</p>
+                      {project.url && (
+                        <div className="text-center mt-3">
+                          <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: project.color, borderColor: project.color }}>
+                            View Project
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <CardContent project={project} />
+                )}
               </div>
             </div>
           ))}
@@ -860,6 +843,104 @@ const ProjectsSection = () => {
     </section>
   );
 };
+
+const CardContent = ({ project }) => (
+  <div className="card h-100">
+    <div className="card-body d-flex flex-column justify-content-between">
+      <div>
+        <h5 className="card-title">{project.title}</h5>
+        <p className="card-text">{project.description}</p>
+        <p className="card-text"><small className="text-muted">Technologies: {project.tech.join(', ')}</small></p>
+      </div>
+      {project.url && (
+        <div className="text-center">
+          <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: project.color, borderColor: project.color }}>
+            View Project
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+);
+
+// Injecting CSS
+const style = document.createElement("style");
+style.innerHTML = `
+  .project-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 200px; /* Fixed height for consistent image size */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  .project-image-wrapper:hover {
+    transform: translateY(-10px);
+  }
+  .project-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire area */
+    transition: filter 0.3s ease-in-out;
+  }
+  .project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  .project-image-wrapper:hover .project-image {
+    filter: blur(5px);
+  }
+  .project-image-wrapper:hover .project-overlay {
+    opacity: 1;
+  }
+  .card {
+    border: none;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  .card-title {
+    color: #007bff;
+  }
+  .card-text {
+    color: #333;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+`;
+document.head.appendChild(style);
+
+
+
 
 const ContactSection = () => {
   return (
@@ -1457,14 +1538,14 @@ body {
 button,
 .clickable,
 a {
-  cursor: url("<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#3A5BFF" stroke="#3A5BFF" stroke-width="2"></circle></svg>"), auto;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='60' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='%2387CEFA' stroke='%2378BBE2' stroke-width='0.25'/%3E%3C/svg%3E") 12 12, auto;
 }
 
 /* Add hover effects for interactive elements */
 button:hover,
 .clickable:hover,
 a:hover {
-  cursor: url("<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#3A5BFF" stroke="#3A5BFF" stroke-width="2"></circle></svg>"), auto;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='60' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='%2387CEFA' stroke='%2378BBE2' stroke-width='0.25'/%3E%3C/svg%3E") 12 12, auto;
 }
 
 </style>
@@ -1734,6 +1815,7 @@ const SkillsSection = () => {
 };
 
 const CertificatesSection = () => {
+  const [showAll, setShowAll] = React.useState(false);
   const AllCertificates = [
     {
       name: "Python Certificate",
@@ -1745,118 +1827,64 @@ const CertificatesSection = () => {
       image: "/cert2.png",
       completed: "2024",
     },
-	{
-		name: "PwC Cybersecurity Job Simulation Certificate. PwC Switzerland Cybersecurity virtual experience program on Forage. Conducted risk assessments, formulated security recommendations, and demonstrated proficiency in cybersecurity concepts, network segmentation, and firewall configuration...",
-		image: "/PwC-cert.jpg",
-		completed: "2025"
-	},
-	{
-		name: "Datacom Cybersecurity Job Simulation Certificate. Datacom Cybersecurity virtual experience program on Forage. Investigated a cyberattack and produced a comprehensive report documenting findings...",
-		image: "/Datacom-cert.jpg",
-		completed: "2025"
-	},
-	{
-		name: "Mastercard Cybersecurity Job Simulation Certificate. Mastercard Cybersecurity virtual experience program on Forage. Helped identify and report security threats such as phishing...",
-		image: "/MC-cert.jpg",
-		completed: "2025"
-	},
-	{
-		name: "TATA Cybersecurity Job Simulation Certificate. Security Analyst Job Simulation on Forage. Completed a job simulation involving identity and access management (IAM) for Tata Consultancy Services, collaborating with a Cybersecurity Consulting team...",
-		image: "/TATA-cert.jpg",
-		completed: "2025"
-	},
-	{
-		name: "ANZ Cybersecurity Job Simulation Certificate. ANZ Australia Cybersecurity virtual experience program on Forage. Identified cybersecurity threats, investigated suspicious emails, and analyzed packet capture files to detect potential threats...",
-		image: "/AZN-cert.jpg",
-		completed: "2025"
-	},
-	{
-		name: "AIG Cybersecurity Job Simulation Certificate. AIG Shields Up Cybersecurity virtual experience program on Forage. Conducted threat analysis, researched vulnerabilities, and provided remediation guidance. Utilized Python for ethical hacking, developing a script to brute-force decryption keys...",
-		image: "/AIG-cert.jpg",
-		completed: "2025"
-	},
-	{
-		name: "Telstra Cybersecurity Job Simulation Certificate.Telstra Cybersecurity virtual experience program on Forage. Conducted malware analysis, mitigated attacks by developing a firewall server rule using Python, and performed an incident postmortem...",
-		image: "/Telstra-cert.jpg",
-		completed: "2025"
-	}
-	
-  ];
-  
-  const profileLinks = [
     {
-      platform: "HTB Academy",
-      url: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4",
-      icon: "fas fa-cube",
-      color: "#9FEF00",
+      name: "PwC Cybersecurity Job Simulation Certificate. PwC Switzerland Cybersecurity virtual experience program on Forage. Conducted risk assessments, formulated security recommendations, and demonstrated proficiency in cybersecurity concepts, network segmentation, and firewall configuration...",
+      image: "/PwC-cert.jpg",
+      completed: "2025",
     },
     {
-      platform: "TryHackMe",
-      url: "https://tryhackme.com/r/p/anonymousx46",
-      icon: "fas fa-user-secret",
-      color: "#CC0000",
+      name: "Datacom Cybersecurity Job Simulation Certificate. Datacom Cybersecurity virtual experience program on Forage. Investigated a cyberattack and produced a comprehensive report documenting findings...",
+      image: "/Datacom-cert.jpg",
+      completed: "2025",
     },
+    {
+      name: "Mastercard Cybersecurity Job Simulation Certificate. Mastercard Cybersecurity virtual experience program on Forage. Helped identify and report security threats such as phishing...",
+      image: "/MC-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "TATA Cybersecurity Job Simulation Certificate. Security Analyst Job Simulation on Forage. Completed a job simulation involving identity and access management (IAM) for Tata Consultancy Services, collaborating with a Cybersecurity Consulting team...",
+      image: "/TATA-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "ANZ Cybersecurity Job Simulation Certificate. ANZ Australia Cybersecurity virtual experience program on Forage. Identified cybersecurity threats, investigated suspicious emails, and analyzed packet capture files to detect potential threats...",
+      image: "/AZN-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "AIG Cybersecurity Job Simulation Certificate. AIG Shields Up Cybersecurity virtual experience program on Forage. Conducted threat analysis, researched vulnerabilities, and provided remediation guidance. Utilized Python for ethical hacking, developing a script to brute-force decryption keys...",
+      image: "/AIG-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Telstra Cybersecurity Job Simulation Certificate.Telstra Cybersecurity virtual experience program on Forage. Conducted malware analysis, mitigated attacks by developing a firewall server rule using Python, and performed an incident postmortem...",
+      image: "/Telstra-cert.jpg",
+      completed: "2025",
+    }
   ];
 
   return (
     <section id="certificates" className="py-5">
       <div className="container">
-        <h2 className="text-center mb-5" style={{ color: "var(--secondary-color)" }}>
-          <i className="fas fa-certificate me-2"></i>
-          Certifications & Profiles
-        </h2>
-
-        {/* All Certificates */}
-        <div className="mb-5">
-          <h3 className="text-center mb-4" style={{ color: "var(--secondary-color)" }}>
-            <i className="fas fa-award me-2"></i>
-            All Professional Certificates I have acquired thus far:
-          </h3>
-          <div className="row g-4 justify-content-center">
-            {AllCertificates.map((cert, index) => (
-              <div key={index} className="col-md-4">
-                <div className="card h-100" style={{ background: "var(--card-bg)", border: "1px solid var(--secondary-color)", borderRadius: "10px", overflow: "hidden", backdropFilter: "blur(10px)" }}>
-                  <img 
-                    src={cert.image} 
-                    alt={cert.name} 
-                    className="card-img-top" 
-                    style={{ maxHeight: "700px", objectFit: "contain", padding: "1rem" }}
-                  />
-                  <div className="card-body text-center">
-                    <h5 className="card-title" style={{ color: "var(--secondary-color)" }}>{cert.name}</h5>
-                    <p className="card-text">Completed: {cert.completed}</p>
-                  </div>
+        <h2 className="text-center mb-5">Certifications</h2>
+        <div className="row g-4">
+          {AllCertificates.slice(0, showAll ? AllCertificates.length : 2).map((cert, index) => (
+            <div key={index} className="col-md-6">
+              <div className="card">
+                <img src={cert.image} loading="lazy" className="card-img-top" alt={cert.name} />
+                <div className="card-body text-center">
+                  <h5 className="card-title">{cert.name}</h5>
+                  <p className="card-text">Completed: {cert.completed}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-
-
-        {/* Profile Links */}
-        <div className="row g-4">
-          {profileLinks.map((profile, index) => (
-            <div key={index} className="col-md-6">
-              <a 
-                href={profile.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-decoration-none"
-              >
-                <div className="card h-100 project-card" style={{ background: "var(--card-bg)", border: `1px solid ${profile.color}`, borderRadius: "10px" }}>
-                  <div className="card-body text-center p-4">
-                    <i className={`${profile.icon} fa-3x mb-3 floating-icon`} style={{ color: profile.color }}></i>
-                    <h4 className="card-title" style={{ color: profile.color }}>{profile.platform}</h4>
-                    <p className="card-text mt-3">View my {profile.platform} profile</p>
-                    <button className="btn btn-outline-primary mt-2" style={{ borderColor: profile.color, color: profile.color }}>
-                      View Profile <i className="fas fa-external-link-alt ms-2"></i>
-                    </button>
-                  </div>
-                </div>
-              </a>
             </div>
           ))}
+        </div>
+        <div className="text-center mt-3">
+          <button className="btn btn-primary" onClick={() => setShowAll(!showAll)}>
+            {showAll ? "Show Less" : "View All Certificates"}
+          </button>
         </div>
       </div>
     </section>
@@ -1864,63 +1892,70 @@ const CertificatesSection = () => {
 };
 
 
-
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "School Network Security Audit",
-      description: "Conducted comprehensive network security assessment using industry-standard penetration testing methodologies. Identified and documented vulnerabilities while following ethical hacking practices.",
+      title: "Python Reverse Shell",
+      description: "A Python-based reverse shell script that works seamlessly with the Kali Linux tool netcat. This script allows you to establish a remote connection to a machine, execute commands, and transfer files. The code can also be run through an obfuscator tool for added security",
       tech: ["Penetration Testing", "Network Security", "Risk Assessment"],
       icon: "fas fa-network-wired",
-      color: "#00ff7f",
-      url: null // No URL for this project
+      color: "#07e86c",
+	  image: "rv.png",
+      url: "https://github.com/ANONYMOUSx46/Reverse-shell"
     },
     {
       title: "Secure Web Application Platform",
-      description: "Developed and implemented a web application specifically for Mobile browsing with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
+      description: "Developed a secure web application for my Church Confirmation group, featuring advanced authentication, data encryption, and protection against XSS, CSRF, and SQL Injection vulnerabilities.",
       tech: ["React", "Node.js", "Security Protocols"],
       icon: "fas fa-shield-alt",
       color: "#4169e1",
-      url: "https://holy-redeemer-confirmation.netlify.app" // Replace with actual URL
+      image: "secure-app.png",
+      url: "https://holy-redeemer-confirmation.netlify.app"
+    },
+	    {
+      title: "Pretty Diary App",
+      description: "Built a fun and interactive diary app, specifically themed for girls. Including many cool features like rich text implementation, emojie feelings etc...",
+      tech: ["HTML5, CSS3, JavaScript (ES6+)"],
+      icon: "fas fa-shield-alt",
+      color: "#e283e6",
+      image: "diaryapp.png",
+      url: "https://secret-diary.netlify.app"
     },
     {
       title: "Security Tool Development",
-      description: "Created a custom security tool for automated vulnerability scanning and threat detection. Implemented machine learning algorithms for anomaly detection. * Side note: Hosted on my github account along with many of my other projects, ANONYMOUSx46",
+      description: "Created a custom security tool for automated vulnerability scanning and threat detection using machine learning. Hosted on my GitHub along with other projects under ANONYMOUSx46.",
       tech: ["Python", "AI/ML", "Automation"],
       icon: "fas fa-tools",
       color: "#ff4500",
-      url: "https://github.com/ANONYMOUSx46/python-security-tool" // Replace with actual URL
+      image: "security-tool.png",
+      url: "https://github.com/ANONYMOUSx46/python-security-tool"
     }
   ];
 
   return (
     <section id="projects" className="py-5">
       <div className="container">
-        <h2 className="text-center mb-5">
-          <i className="fas fa-project-diagram me-2"></i>
-          Featured Projects
-        </h2>
+        <h2 className="text-center mb-5">Featured Projects</h2>
         <div className="row g-4">
           {projects.map((project, index) => (
-            <div key={index} className="col-lg-4">
-              <div 
-                className="project-card h-100"
-                style={{ position: "relative" }}
-              >
-                <CardContent project={project} />
-                {/* Add a "View Project" button if the project has a URL */}
-                {project.url && (
-                  <div className="text-center mt-3">
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-primary"
-                      style={{ background: project.color, borderColor: project.color }}
-                    >
-                      View Project
-                    </a>
+            <div key={index} className="col-lg-6">
+              <div className="project-card h-100 position-relative">
+                {project.image ? (
+                  <div className="project-image-wrapper">
+                    <img src={project.image} loading="lazy" className="img-fluid project-image" alt={project.title} />
+                    <div className="project-overlay">
+                      <p className="project-description">{project.description}</p>
+                      {project.url && (
+                        <div className="text-center mt-3">
+                          <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: project.color, borderColor: project.color }}>
+                            View Project
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
+                ) : (
+                  <CardContent project={project} />
                 )}
               </div>
             </div>
@@ -1931,51 +1966,52 @@ const ProjectsSection = () => {
   );
 };
 
-// Helper Component for Card Content
-const CardContent = ({ project }) => (
-  <div className="card-body d-flex flex-column">
-    <div className="text-center mb-4">
-      <div
-        className="icon-circle mb-3"
-        style={{
-          background: `linear-gradient(135deg, ${project.color}22, ${project.color}11)`,
-          width: "80px",
-          height: "80px",
-          borderRadius: "50%",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          border: `2px solid ${project.color}`,
-        }}
-      >
-        <i className={`${project.icon} fa-2x`} style={{ color: project.color }}></i>
-      </div>
-      <h4 className="card-title mb-3">{project.title}</h4>
-    </div>
-    <p className="card-text flex-grow-1">{project.description}</p>
-    <div className="mt-4">
-      <hr style={{ borderColor: "var(--secondary-color)" }} />
-      <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
-        {project.tech.map((tech, i) => (
-          <span
-            key={i}
-            className="badge"
-            style={{
-              background: `${project.color}22`,
-              color: project.color,
-              border: `1px solid ${project.color}`,
-              padding: "8px 16px",
-              fontSize: "0.85rem",
-            }}
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
+const style = document.createElement("style");
+style.innerHTML = `
+  .project-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  .project-image-wrapper:hover {
+    transform: scale(1.08);
+  }
+  .project-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: filter 0.3s ease-in-out;
+  }
+  .project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
+    padding: 20px;
+    text-align: center;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  .project-image-wrapper:hover .project-overlay {
+    opacity: 1;
+  }
+`;
+document.head.appendChild(style);
 
 
 

@@ -1864,6 +1864,21 @@ const CertificatesSection = () => {
     }
   ];
 
+  const profiles = [
+    {
+      platform: "HTB Academy",
+      url: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4",
+      icon: "fas fa-cube",
+      color: "#9FEF00",
+    },
+    {
+      platform: "TryHackMe",
+      url: "https://tryhackme.com/r/p/anonymousx46",
+      icon: "fas fa-user-secret",
+      color: "#CC0000",
+    }
+  ];
+
   return (
     <section id="certificates" className="py-5">
       <div className="container">
@@ -1886,10 +1901,31 @@ const CertificatesSection = () => {
             {showAll ? "Show Less" : "View All Certificates"}
           </button>
         </div>
+        
+        {/* Profile Links */}
+        <div className="row g-4 mt-5">
+          {profiles.map((profile, index) => (
+            <div key={index} className="col-md-6">
+              <a href={profile.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                <div className="card h-100 project-card" style={{ background: "var(--card-bg)", border: `1px solid ${profile.color}`, borderRadius: "10px" }}>
+                  <div className="card-body text-center p-4">
+                    <i className={`${profile.icon} fa-3x mb-3 floating-icon`} style={{ color: profile.color }}></i>
+                    <h4 className="card-title" style={{ color: profile.color }}>{profile.platform}</h4>
+                    <p className="card-text mt-3">View my {profile.platform} profile</p>
+                    <button className="btn btn-outline-primary mt-2" style={{ borderColor: profile.color, color: profile.color }}>
+                      View Profile <i className="fas fa-external-link-alt ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
+
 
 
 const ProjectsSection = () => {
@@ -1900,7 +1936,7 @@ const ProjectsSection = () => {
       tech: ["Penetration Testing", "Network Security", "Risk Assessment"],
       icon: "fas fa-network-wired",
       color: "#07e86c",
-	  image: "/rv.png",
+	  image: "rv.png",
       url: "https://github.com/ANONYMOUSx46/Reverse-shell"
     },
     {
@@ -1909,7 +1945,7 @@ const ProjectsSection = () => {
       tech: ["React", "Node.js", "Security Protocols"],
       icon: "fas fa-shield-alt",
       color: "#4169e1",
-      image: "/secure-app.png",
+      image: "secure-app.png",
       url: "https://holy-redeemer-confirmation.netlify.app"
     },
 	    {
@@ -1918,7 +1954,7 @@ const ProjectsSection = () => {
       tech: ["HTML5, CSS3, JavaScript (ES6+)"],
       icon: "fas fa-shield-alt",
       color: "#e283e6",
-      image: "/diaryapp.png",
+      image: "diaryapp.png",
       url: "https://secret-diary.netlify.app"
     },
     {
@@ -1927,7 +1963,7 @@ const ProjectsSection = () => {
       tech: ["Python", "AI/ML", "Automation"],
       icon: "fas fa-tools",
       color: "#ff4500",
-      image: "/security-tool.png",
+      image: "security-tool.png",
       url: "https://github.com/ANONYMOUSx46/python-security-tool"
     }
   ];

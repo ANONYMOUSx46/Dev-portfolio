@@ -1537,18 +1537,58 @@ body {
   cursor: none;
 }
 
-/* Custom Cursor */
-#custom-cursor {
+/* Fluid Motion Cursor */
+#cursor {
+  --cursor-size: 40px; /* Base size for the blobs */
   position: fixed;
-  width: 20px;
-  height: 20px;
-  background: #87CEFA; /* Light blue color */
-  border-radius: 50%; /* Circular shape */
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* Ensure it doesn't block clicks */
+  top: calc(var(--cursor-size) * -0.5);
+  left: calc(var(--cursor-size) * -0.5);
+  mix-blend-mode: difference;
+  filter: url(#goo); /* Apply the SVG filter for gooey effect */
+  pointer-events: none;
   z-index: 9999;
-  transition: all 0.1s ease; /* Smooth transitions */
-  box-shadow: 0 0 10px rgba(135, 206, 250, 0.8); /* Glow effect */
+  transition: transform 0.1s ease-out; /* Smooth movement */
+}
+
+.blob {
+  position: absolute;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background: #87CEFA; /* Match the cursor color */
+  border-radius: 50%;
+  transform-origin: center;
+  animation: blob-pulse 2s infinite ease-in-out alternate; /* Add pulsing animation */
+}
+
+/* Pulsing Animation for Blobs */
+@keyframes blob-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Wiggle Animation for Hover Effect */
+@keyframes wiggle {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 /* Cursor Trail Container */
@@ -1587,49 +1627,33 @@ body {
   }
 }
 
-/* Add custom cursor for buttons and other interactive elements */
-button,
-.clickable,
-a {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='60' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='%2387CEFA' stroke='%2378BBE2' stroke-width='0.25'/%3E%3C/svg%3E") 12 12, auto;
-}
-
-/* Add hover effects for interactive elements */
-button:hover,
-.clickable:hover,
-a:hover {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='60' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='%2387CEFA' stroke='%2378BBE2' stroke-width='0.25'/%3E%3C/svg%3E") 12 12, auto;
-}
-
-.expertise-container {
-  display: inline-block;
-  width: 300px; /* Increased width to accommodate the text */
-  text-align: left; /* Ensures words align properly */
-  font-weight: bold;
-  overflow: hidden; /* Ensure text doesn't overflow */
-  white-space: nowrap; /* Prevent text from wrapping */
-  vertical-align: middle; /* Align text vertically */
-}
-
-.typed-cursor {
-  display: none; /* Hide blinking cursor */
-}
-
-.typed-fade-out {
-  opacity: 0;
-  transition: opacity 0.5s ease-out; /* Smooth fade out effect */
-}
-
-
-
 </style>
 </head>
 <body>
 
 <div id="root"></div>
 
-<div id="custom-cursor"></div>
+<!-- Fluid Motion Cursor -->
+<div id="cursor">
+  <div class="blob" style="--offset-x: 0px; --offset-y: 0px;"></div>
+  <div class="blob" style="--offset-x: 10px; --offset-y: 10px;"></div>
+  <div class="blob" style="--offset-x: -10px; --offset-y: -10px;"></div>
+</div>
+
+<!-- Cursor Trail Container -->
 <div id="cursor-trail"></div>
+
+<!-- SVG Filter for Gooey Effect -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; visibility: hidden;">
+  <defs>
+    <!-- Gooey Effect Filter -->
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+    </filter>
+  </defs>
+</svg>
 
 <script type="text/babel">
 const ThemeToggle = () => {
@@ -2311,68 +2335,77 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Fading Trail Cursor Script
 document.addEventListener("DOMContentLoaded", () => {
-  const customCursor = document.getElementById("custom-cursor");
+  const fluidCursor = document.getElementById("cursor");
   const cursorTrail = document.getElementById("cursor-trail");
+
   // Variables to track cursor position
   let mouseX = 0;
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
+
   // Smoothing factor (lower = smoother, higher = faster)
   const speedFactor = 0.1;
+
   // Throttle the creation of trail elements
   let lastTrailTime = 0;
   const trailInterval = 100; // Create a new trail every 100ms
+
   // Track mouse movement
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+
     // Throttle trail creation
     const now = Date.now();
     if (now - lastTrailTime > trailInterval) {
       lastTrailTime = now;
+
       // Create a new trail element
       const trailElement = document.createElement("div");
       trailElement.classList.add("trail");
       trailElement.style.left = `${mouseX}px`;
       trailElement.style.top = `${mouseY}px`;
       cursorTrail.appendChild(trailElement);
+
       // Remove the trail element after the animation ends
       setTimeout(() => {
         trailElement.remove();
       }, 600); // Match the duration of the fade-out animation (0.6s)
     }
   });
+
   // Update cursor position with smoothing
   function updateCursor() {
     // Interpolate cursor position
     cursorX += (mouseX - cursorX) * speedFactor;
     cursorY += (mouseY - cursorY) * speedFactor;
-    // Update the custom cursor's position
-    customCursor.style.left = `${cursorX}px`;
-    customCursor.style.top = `${cursorY}px`;
+
+    // Update the fluid cursor's position
+    fluidCursor.style.left = `${cursorX}px`;
+    fluidCursor.style.top = `${cursorY}px`;
+
     // Request the next animation frame
     requestAnimationFrame(updateCursor);
   }
+
   // Start the animation loop
   updateCursor();
+
   // Add hover effects for interactive elements
-  document.querySelectorAll("a, button, .clickable").forEach((el) => {
+  document.querySelectorAll("button, .clickable, a").forEach((el) => {
     el.addEventListener("mouseenter", () => {
-      customCursor.style.width = "40px";
-      customCursor.style.height = "40px";
-      customCursor.style.background = "#ff4500"; // Change color on hover
-      customCursor.style.boxShadow = "0 0 20px rgba(255, 69, 0, 0.8)"; // Enhanced glow
-      customCursor.style.animation = "spin 1s infinite linear"; // Add spin animation on hover
+      fluidCursor.style.setProperty("--cursor-size", "50px"); // Increase size on hover
+      fluidCursor.querySelectorAll(".blob").forEach((blob) => {
+        blob.style.animation = "wiggle 0.5s infinite linear"; // Add wiggle animation
+      });
     });
     el.addEventListener("mouseleave", () => {
-      customCursor.style.width = "20px";
-      customCursor.style.height = "20px";
-      customCursor.style.background = "#007bff"; // Reset color
-      customCursor.style.boxShadow = "0 0 10px rgba(0, 123, 255, 0.8)"; // Reset glow
-      customCursor.style.animation = ""; // Remove spin animation on leave
+      fluidCursor.style.setProperty("--cursor-size", "40px"); // Reset size
+      fluidCursor.querySelectorAll(".blob").forEach((blob) => {
+        blob.style.animation = ""; // Remove wiggle animation
+      });
     });
   });
 });

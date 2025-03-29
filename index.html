@@ -713,107 +713,114 @@ const SkillsSection = () => {
 };
 
 const CertificatesSection = () => {
-  const certificates = [
+  const [showAll, setShowAll] = React.useState(false);
+  const AllCertificates = [
     {
-      platform: "Sololearn",
-      certs: [
-        {
-          name: "Python Certificate", 
-          image: "", // Add my Sololearn Python certificate image URL here
-          date: "2024"
-        },
-        {
-          name: "Web Development Certificate",
-          image: "", // Add my Sololearn Web Development certificate image URL here
-          date: "2024"
-        }
-      ],
-      icon: "fas fa-award",
-      color: "#149EF2"
+      name: "Python Certificate",
+      image: "/cert.jpg",
+      completed: "2024",
     },
     {
+      name: "Web Development Certificate",
+      image: "/cert2.png",
+      completed: "2024",
+    },
+	{
+      name: "Angular Framework Certificate",
+      image: "/angular.jpg",
+      completed: "2025",
+    },
+	{
+      name: "SQL Intermediate Certificate",
+      image: "/SQL.png",
+      completed: "2025",
+    },
+    {
+      name: "PwC Cybersecurity Job Simulation Certificate. PwC Switzerland Cybersecurity virtual experience program on Forage. Conducted risk assessments, formulated security recommendations, and demonstrated proficiency in cybersecurity concepts, network segmentation, and firewall configuration...",
+      image: "/PwC-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Datacom Cybersecurity Job Simulation Certificate. Datacom Cybersecurity virtual experience program on Forage. Investigated a cyberattack and produced a comprehensive report documenting findings...",
+      image: "/Datacom-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Mastercard Cybersecurity Job Simulation Certificate. Mastercard Cybersecurity virtual experience program on Forage. Helped identify and report security threats such as phishing...",
+      image: "/MC-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "TATA Cybersecurity Job Simulation Certificate. Security Analyst Job Simulation on Forage. Completed a job simulation involving identity and access management (IAM) for Tata Consultancy Services, collaborating with a Cybersecurity Consulting team...",
+      image: "/TATA-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "ANZ Cybersecurity Job Simulation Certificate. ANZ Australia Cybersecurity virtual experience program on Forage. Identified cybersecurity threats, investigated suspicious emails, and analyzed packet capture files to detect potential threats...",
+      image: "/AZN-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "AIG Cybersecurity Job Simulation Certificate. AIG Shields Up Cybersecurity virtual experience program on Forage. Conducted threat analysis, researched vulnerabilities, and provided remediation guidance. Utilized Python for ethical hacking, developing a script to brute-force decryption keys...",
+      image: "/AIG-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Telstra Cybersecurity Job Simulation Certificate.Telstra Cybersecurity virtual experience program on Forage. Conducted malware analysis, mitigated attacks by developing a firewall server rule using Python, and performed an incident postmortem...",
+      image: "/Telstra-cert.jpg",
+      completed: "2025",
+    }
+  ];
+
+  const profiles = [
+    {
       platform: "HTB Academy",
-      profileUrl: "https://app.hackthebox.com/profile/YOURUSERNAME", //  my HTB profile URL
+      url: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4",
       icon: "fas fa-cube",
-      color: "#9FEF00"
+      color: "#9FEF00",
     },
     {
       platform: "TryHackMe",
-      profileUrl: "https://tryhackme.com/p/YOURUSERNAME", // my TryHackMe profile URL
+      url: "https://tryhackme.com/r/p/anonymousx46",
       icon: "fas fa-user-secret",
-      color: "#CC0000"
+      color: "#CC0000",
     }
   ];
 
   return (
     <section id="certificates" className="py-5">
       <div className="container">
-        <h2 className="text-center mb-5">
-          <i className="fas fa-certificate me-2"></i>
-          Certifications & Profiles
-        </h2>
-        
-        {/* All Certificates */}
-        <div className="row mb-5">
-          <div className="col-12">
-            <h3 className="text-center mb-4" style={{color: 'var(--secondary-color)'}}>
-              <i className="fas fa-award me-2"></i>
-              All Professional Certificates
-            </h3>
-            <div className="row g-4 justify-content-center">
-              {certificates[0].certs.map((cert, index) => (
-                <div key={index} className="col-md-4">
-                  <div className="card h-100" style={{
-                    background: 'var(--card-bg)',
-                    border: '1px solid var(--secondary-color)',
-                    borderRadius: '10px',
-                    overflow: 'hidden'
-                  }}>
-                    <img 
-                      src={cert.image} 
-                      alt={cert.name}
-                      className="card-img-top"
-                      style={{
-                        maxHeight: '200px',
-                        objectFit: 'contain',
-                        padding: '1rem'
-                      }}
-                    />
-                    <div className="card-body text-center">
-                      <h5 className="card-title">{cert.name}</h5>
-                      <p className="card-text">Completed: {cert.date}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Platform Profiles */}
+        <h2 className="text-center mb-5">Certifications</h2>
         <div className="row g-4">
-          {certificates.slice(1).map((platform, index) => (
+          {AllCertificates.slice(0, showAll ? AllCertificates.length : 2).map((cert, index) => (
             <div key={index} className="col-md-6">
-              <a 
-                href={platform.profileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-decoration-none"
-              >
-                <div className="card h-100" style={{
-                  background: 'var(--card-bg)',
-                  border: `1px solid ${platform.color}`,
-                  borderRadius: '10px',
-                  transition: 'all 0.3s ease'
-                }}>
+              <div className="card">
+                <img src={cert.image} loading="lazy" className="card-img-top" alt={cert.name} />
+                <div className="card-body text-center">
+                  <h5 className="card-title">{cert.name}</h5>
+                  <p className="card-text">Completed: {cert.completed}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-3">
+          <button className="btn btn-primary" onClick={() => setShowAll(!showAll)}>
+            {showAll ? "Show Less" : "View All Certificates"}
+          </button>
+        </div>
+        
+        {/* Profile Links */}
+        <div className="row g-4 mt-5">
+          {profiles.map((profile, index) => (
+            <div key={index} className="col-md-6">
+              <a href={profile.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                <div className="card h-100 project-card" style={{ background: "var(--card-bg)", border: `1px solid ${profile.color}`, borderRadius: "10px" }}>
                   <div className="card-body text-center p-4">
-                    <i className={`${platform.icon} fa-3x mb-3`} style={{color: platform.color}}></i>
-                    <h4 className="card-title" style={{color: platform.color}}>{platform.platform}</h4>
-                    <p className="card-text mt-3">View my {platform.platform} profile</p>
-                    <button className="btn btn-outline-primary mt-2" style={{
-                      borderColor: platform.color,
-                      color: platform.color
-                    }}>
+                    <i className={`${profile.icon} fa-3x mb-3 floating-icon`} style={{ color: profile.color }}></i>
+                    <h4 className="card-title" style={{ color: profile.color }}>{profile.platform}</h4>
+                    <p className="card-text mt-3">View my {profile.platform} profile</p>
+                    <button className="btn btn-outline-primary mt-2" style={{ borderColor: profile.color, color: profile.color }}>
                       View Profile <i className="fas fa-external-link-alt ms-2"></i>
                     </button>
                   </div>
@@ -828,36 +835,63 @@ const CertificatesSection = () => {
 };
 
 
-
-
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "School Network Security Audit",
-      description: "Conducted comprehensive network security assessment using industry-standard penetration testing methodologies. Identified and documented vulnerabilities while following ethical hacking practices.",
+      title: "Python Reverse Shell",
+      description: "A Python-based reverse shell script that works seamlessly with the Kali Linux tool netcat. This script allows you to establish a remote connection to a machine, execute commands, and transfer files. The code can also be run through an obfuscator tool for added security",
       tech: ["Penetration Testing", "Network Security", "Risk Assessment"],
       icon: "fas fa-network-wired",
-      color: "#00ff7f",
-      url: null
+      color: "#07e86c",
+	  image: "/rv2.png",
+      url: "https://github.com/ANONYMOUSx46/Reverse-shell"
     },
     {
       title: "Secure Web Application Platform",
-      description: "Developed and implemented a web application I made specifically for my Church Confirmation group, with advanced authentication mechanisms, data encryption, and protection against common web vulnerabilities (XSS, CSRF, SQL Injection).",
+      description: "Developed a secure web application for my Church Confirmation group, featuring advanced authentication, data encryption, and protection against XSS, CSRF, and SQL Injection vulnerabilities.",
       tech: ["React", "Node.js", "Security Protocols"],
       icon: "fas fa-shield-alt",
       color: "#4169e1",
-      image: "secure-app.png",
+      image: "/secure-app.png",
       url: "https://holy-redeemer-confirmation.netlify.app"
+    },
+	    {
+      title: "Pretty Diary App",
+      description: "Built a fun and interactive diary app, specifically themed for girls. Including many cool features like rich text implementation, emojie feelings etc...",
+      tech: ["HTML5, CSS3, JavaScript (ES6+)"],
+      icon: "fas fa-shield-alt",
+      color: "#e283e6",
+      image: "/diaryapp.png",
+      url: "https://secret-diary.netlify.app"
     },
     {
       title: "Security Tool Development",
-      description: "Created a custom security tool for automated vulnerability scanning and threat detection. Implemented machine learning algorithms for anomaly detection. * Side note: Hosted on my github account along with many of my other projects, ANONYMOUSx46",
+      description: "Created a custom security tool for automated vulnerability scanning and threat detection using machine learning. Hosted on my GitHub along with other projects under ANONYMOUSx46.",
       tech: ["Python", "AI/ML", "Automation"],
       icon: "fas fa-tools",
       color: "#ff4500",
-      image: "security-tool.png",
+      image: "/security-tool.png",
       url: "https://github.com/ANONYMOUSx46/python-security-tool"
-    }
+    },
+	{
+      title: "Advanced Web Scrapping Tool",
+      description: "Created a fully custom CLI tool with Python to automate the process of Web Scrapping and perform comprehensive reconnaissance on websites.",
+      tech: ["Python", "WHOIS", "NSLookup", "DIG Queries", "WhatWeb Scan", "Curl", "Nikto", "Amass",  "Automation"],
+      icon: "fas fa-tools",
+      color: "#ff4500",
+      image: "/awt.png",
+      url: "https://github.com/ANONYMOUSx46/Advanced-Web-Scrapping-Tool"
+    },
+	{
+      title: "Robotics and Coding club Website",
+      description: "A website I built for my school regarding a Coding and Robotics Club we were going to have for the CAT learners.",
+      tech: ["TypeScript","JavaScript", "TailwindCSS", "HTML5"],
+      icon: "fas fa-tools",
+      color: "#ff4500",
+      image: "/rbc.png",
+      url: "https://bestclub.netlify.app"
+    },
+	
   ];
 
   return (
@@ -894,47 +928,25 @@ const ProjectsSection = () => {
   );
 };
 
-const CardContent = ({ project }) => (
-  <div className="card h-100">
-    <div className="card-body d-flex flex-column justify-content-between">
-      <div>
-        <h5 className="card-title">{project.title}</h5>
-        <p className="card-text">{project.description}</p>
-        <p className="card-text"><small className="text-muted">Technologies: {project.tech.join(', ')}</small></p>
-      </div>
-      {project.url && (
-        <div className="text-center">
-          <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: project.color, borderColor: project.color }}>
-            View Project
-          </a>
-        </div>
-      )}
-    </div>
-  </div>
-);
-
-// Injecting CSS
 const style = document.createElement("style");
 style.innerHTML = `
   .project-image-wrapper {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 200px; /* Fixed height for consistent image size */
+    max-width: 900px;
+    margin: 0 auto;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
   }
   .project-image-wrapper:hover {
-    transform: translateY(-10px);
+    transform: scale(1.08);
   }
   .project-image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the image covers the entire area */
+    height: auto;
+    object-fit: cover;
     transition: filter 0.3s ease-in-out;
   }
   .project-overlay {
@@ -948,46 +960,23 @@ style.innerHTML = `
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    padding: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
+    padding: 20px;
     text-align: center;
-    color: white;
-    font-size: 1.2rem;
+    color: black;
+    font-size: 1rem;
     font-weight: bold;
     border-radius: 10px;
-  }
-  .project-image-wrapper:hover .project-image {
-    filter: blur(5px);
   }
   .project-image-wrapper:hover .project-overlay {
     opacity: 1;
   }
-  .card {
-    border: none;
-    background-color: #f4f4f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-  }
-  .card:hover {
-    transform: translateY(-10px);
-  }
-  .card-title {
-    color: #007bff;
-  }
-  .card-text {
-    color: #333;
-  }
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
 `;
 document.head.appendChild(style);
+
+
+
 
 
 
@@ -2315,9 +2304,10 @@ const Footer = () => {
         <p className="mb-0">© 2024-2025 Cyber Security Portfolio. All rights reserved.</p>
         <div className="mt-3">
           <a href="https://github.com/ANONYMOUSx46" className="text-white me-3"><i className="fab fa-github"></i></a>
-	  <a href="https://www.linkedin.com/in/liam-de-wet-42b80a355/" className="text-white">
-            <i className="fab fa-linkedin"></i>
         </div>
+		<div className="mt-3">
+		<a href="https://www.linkedin.com/in/liam-de-wet-42b80a355/" className="text-white"><i className="fab fa-linkedin"></i>
+		</div>
       </div>
     </footer>
   );

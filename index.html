@@ -26,6 +26,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
+
+
+
   
 <style>
 :root {
@@ -713,6 +716,7 @@ const SkillsSection = () => {
 };
 
 const CertificatesSection = () => {
+  const { useState, useEffect } = React;	
   const [showAll, setShowAll] = React.useState(false);
   const AllCertificates = [
     {
@@ -809,13 +813,33 @@ const CertificatesSection = () => {
       url: "https://tryhackme.com/r/p/anonymousx46",
       icon: "fas fa-user-secret",
       color: "#CC0000",
+    },
+	{
+      platform: "Cisco NetAcad",
+      url: "https://www.netacad.com/profile?tab=badges",
+      icon: "fas fa-network-wired",
+      color: "#0082C9", // Cisco blue
     }
   ];
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "//cdn.credly.com/assets/utilities/embed.js";
+
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <section id="certificates" className="py-5">
       <div className="container">
         <h2 className="text-center mb-5">Certifications</h2>
+
+        {/* Certificates Grid */}
         <div className="row g-4">
           {AllCertificates.slice(0, showAll ? AllCertificates.length : 2).map((cert, index) => (
             <div key={index} className="col-md-6">
@@ -829,23 +853,35 @@ const CertificatesSection = () => {
             </div>
           ))}
         </div>
+
+        {/* Show All Button */}
         <div className="text-center mt-3">
           <button className="btn btn-primary" onClick={() => setShowAll(!showAll)}>
             {showAll ? "Show Less" : "View All Certificates"}
           </button>
         </div>
-        
+
         {/* Profile Links */}
         <div className="row g-4 mt-5">
           {profiles.map((profile, index) => (
             <div key={index} className="col-md-6">
               <a href={profile.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                <div className="card h-100 project-card" style={{ background: "var(--card-bg)", border: `1px solid ${profile.color}`, borderRadius: "10px" }}>
+                <div
+                  className="card h-100 project-card"
+                  style={{
+                    background: "var(--card-bg)",
+                    border: `1px solid ${profile.color}`,
+                    borderRadius: "10px"
+                  }}
+                >
                   <div className="card-body text-center p-4">
                     <i className={`${profile.icon} fa-3x mb-3 floating-icon`} style={{ color: profile.color }}></i>
                     <h4 className="card-title" style={{ color: profile.color }}>{profile.platform}</h4>
                     <p className="card-text mt-3">View my {profile.platform} profile</p>
-                    <button className="btn btn-outline-primary mt-2" style={{ borderColor: profile.color, color: profile.color }}>
+                    <button
+                      className="btn btn-outline-primary mt-2"
+                      style={{ borderColor: profile.color, color: profile.color }}
+                    >
                       View Profile <i className="fas fa-external-link-alt ms-2"></i>
                     </button>
                   </div>
@@ -854,11 +890,56 @@ const CertificatesSection = () => {
             </div>
           ))}
         </div>
+
+{/* Cisco / Credly Badges as Static Images */}
+<div className="mt-5">
+  <h3 className="text-center mb-4">Cisco Networking Academy Badges</h3>
+  <div className="d-flex flex-wrap justify-content-center gap-4">
+    {/* Example Badge 1 */}
+    <a href="https://www.credly.com/earner/earned/badge/b82fcd78-497e-4327-8a60-3d6a12c9e9e4" target="_blank" rel="noopener noreferrer">
+      <img
+        src="introduction-to-modern-ai.png"
+        alt="Cybersecurity Essentials Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+    </a>
+
+    {/* Add more badges below */}
+    <a href="https://www.credly.com/earner/earned/badge/a3c37ec8-ee0f-4057-bf58-26b4533be8df" target="_blank" rel="noopener noreferrer">
+      <img
+        src="introduction-to-cybersecurity (1).png"
+        alt="Networking Basics Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+    </a>
+	<a href="https://www.credly.com/earner/earned/badge/b71d70fe-4699-42fd-9a4f-3a5ddc8911a7" target="_blank" rel="noopener noreferrer">
+      <img
+        src="computer-hardware-basics.png"
+        alt="Networking Basics Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+    </a>
+	<a href="https://www.credly.com/earner/earned/badge/b1bbc74f-f0d3-4c96-b48c-698b95be1dd9" target="_blank" rel="noopener noreferrer">
+      <img
+        src="engaging-stakeholders-for-success.png"
+        alt="Networking Basics Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+    </a>
+	<a href="https://www.credly.com/earner/earned/badge/2888ecd0-4117-46aa-bb7f-96d7db112d9b" target="_blank" rel="noopener noreferrer">
+      <img
+        src="digital-safety-and-security-awareness.png"
+        alt="Networking Basics Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+    </a>
+  </div>
+</div>
+
       </div>
     </section>
   );
 };
-
 
 const ProjectsSection = () => {
   const projects = [

@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en"><head><base href="."/>
+<link rel="icon" type="image/png" href="/favicon2.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liam De Wet | Cyber Security Portfolio - South Africa</title>
+<meta name="description" content="Liam De Wet, cyber security enthusiast from Cape Town, South Africa. Projects, certifications and skills in ethical hacking, Python and networking.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Liam De Wet | Cyber Security Portfolio">
+<meta property="og:description" content="Projects, certifications and skills in ethical hacking, Python and networking.">
+<meta property="og:url" content="https://liam-prtfolio.netlify.app/">
+<meta name="theme-color" content="#0a192f">
+
+<!-- React and React DOM -->
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+<!-- Bootstrap CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+ 
+<script src="https://unpkg.com/react-modal@3.14.4/dist/react-modal.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+
+
+
+  
+<style>
+:root {
+  /* Dark theme (default) */
+  --primary-color: #0a192f;
+  --secondary-color: #64ffda;
+  --accent-color: #00ff00;
+  --bg-color: #0d1117;  /* Darker GitHub-style background */
+  --text-color: #8892b0;
+  --card-bg: rgba(30, 41, 59, 0.5);
+  
+  /* Light theme */
+  --light-primary: #f8fafc;
+  --light-secondary: #0ea5e9;
+  --light-accent: #0284c7;
+  --light-bg: #f1f5f9;
+  --light-text: #334155;
+  --light-card-bg: rgba(241, 245, 249, 0.9);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on navbar height */
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+body.light-mode {
+  --primary-color: var(--light-primary);
+  --secondary-color: var(--light-secondary);
+  --accent-color: var(--light-accent);
+  --bg-color: var(--light-bg);
+  --text-color: var(--light-text);
+  --card-bg: var(--light-card-bg);
+}
+
+.navbar {
+  background: rgba(10, 25, 47, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 25, 47, 0.95),
+    rgba(10, 25, 47, 0.8)
+  );
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.glitch-text {
+  text-shadow: 
+    0.05em 0 0 rgba(255,0,0,.75),
+    -0.025em -0.05em 0 rgba(0,255,0,.75),
+    0.025em 0.05em 0 rgba(0,0,255,.75);
+  animation: glitch 500ms infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 
+      0.05em 0 0 rgba(255,0,0,.75),
+      -0.05em -0.025em 0 rgba(0,255,0,.75),
+      -0.025em 0.05em 0 rgba(0,0,255,.75);
+  }
+  14% {
+    text-shadow: 
+      0.05em 0 0 rgba(255,0,0,.75),
+      -0.05em -0.025em 0 rgba(0,255,0,.75),
+      -0.025em 0.05em 0 rgba(0,0,255,.75);
+  }
+  15% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255,0,0,.75),
+      0.025em 0.025em 0 rgba(0,255,0,.75),
+      -0.05em -0.05em 0 rgba(0,0,255,.75);
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 rgba(255,0,0,.75),
+      0.025em 0.025em 0 rgba(0,255,0,.75),
+      -0.05em -0.05em 0 rgba(0,0,255,.75);
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255,0,0,.75),
+      0.05em 0 0 rgba(0,255,0,.75),
+      0 -0.05em 0 rgba(0,0,255,.75);
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 rgba(255,0,0,.75),
+      0.05em 0 0 rgba(0,255,0,.75),
+      0 -0.05em 0 rgba(0,0,255,.75);
+  }
+  100% {
+    text-shadow: 
+      -0.025em 0 0 rgba(255,0,0,.75),
+      -0.025em -0.025em 0 rgba(255,0,0,.75),
+      -0.025em -0.05em 0 rgba(0,0,255,.75);
+  }
+}
+
+.skill-card {
+  min-height: 180px; /* Increased height to accommodate larger icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px) rotateX(10deg);
+  box-shadow: 
+    0 5px 15px rgba(100, 255, 218, 0.2),
+    0 0 30px rgba(100, 255, 218, 0.1);
+}
+
+.skill-card i {
+  font-size: 2.5em; /* Adjusted icon size */
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(100, 255, 218, 0.3));
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover i {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(100, 255, 218, 0.5));
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: var(--card-bg);
+  border-radius: 15px;
+  border: 1px solid var(--secondary-color);
+}
+
+.contact-form input, .contact-form textarea {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid var(--secondary-color);
+  color: white;
+}
+
+.btn-primary {
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.typing-effect::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  min-height: 300px;
+  opacity: 1;  /* Changed from 0 to 1 to make sure it's visible */
+  background: rgba(10, 25, 47, 0.95);
+  color: #64ffda;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #64ffda;
+  font-family: 'Courier New', monospace;
+  white-space: pre-wrap;
+  z-index: 1000;  /* Ensure it's above other elements */
+  box-shadow: 
+    0 0 30px rgba(100, 255, 218, 0.2),
+    inset 0 0 30px rgba(100, 255, 218, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseBox {
+  0% {
+    box-shadow: 
+      0 0 30px rgba(100, 255, 218, 0.2),
+      inset 0 0 30px rgba(100, 255, 218, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 40px rgba(100, 255, 218, 0.3),
+      inset 0 0 40px rgba(100, 255, 218, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 0 30px rgba(100, 255, 218, 0.2),
+      inset 0 0 30px rgba(100, 255, 218, 0.1);
+  }
+}
+
+.floating-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.floating-icon i {
+  font-size: 8em;
+  filter: drop-shadow(0 0 15px var(--secondary-color));
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--secondary-color);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 0 15px var(--secondary-color);
+}
+
+.project-card .card-title {
+  color: var(--secondary-color);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.project-card .card-text {
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.project-card .icon-circle {
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .icon-circle {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.project-card .badge {
+  transition: all 0.3s ease;
+}
+
+.project-card .badge:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 6rem 0;
+  scroll-margin-top: 80px; /* Adjust based on navbar height */
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 4rem 0;
+  }
+  
+  .skill-card {
+    min-height: 140px;
+    margin: 5px;
+  }
+  
+  .terminal-window {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .floating-icon i {
+    font-size: 6em;
+  }
+  
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+#certificates .card img {
+  transition: all 0.3s ease;
+}
+
+#certificates .card:hover img {
+  transform: scale(1.05);
+}
+
+#certificates a:hover {
+  text-decoration: none;
+}
+
+#certificates .card:hover button {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.expertise-container {
+  display: inline-block;
+  width: 300px; /* Increased width to accommodate the text */
+  text-align: left; /* Ensures words align properly */
+  font-weight: bold;
+  overflow: hidden; /* Ensure text doesn't overflow */
+  white-space: nowrap; /* Prevent text from wrapping */
+  vertical-align: middle; /* Align text vertically */
+}
+
+.typed-cursor {
+  display: none; /* Hide blinking cursor */
+}
+
+.typed-fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out; /* Smooth fade out effect */
+}
+
+
+/* ---- added: layout / touch fixes ---- */
+body { overflow-x: hidden; }
+
+/* Touch devices have no hover, so show project descriptions under the image */
+@media (hover: none) {
+  .project-image-wrapper .project-overlay {
+    position: static; height: auto; opacity: 1;
+    background: transparent; backdrop-filter: none;
+    color: var(--text-color); font-weight: normal; font-size: 0.9rem;
+    padding: 12px 4px 0;
+  }
+}
+
+/* ---- cursor tracker (desktop mouse only) ---- */
+#cursor, #cursor-trail { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  #cursor, #cursor-trail { display: block; }
+/* Hide the default cursor */
+body {
+  cursor: none;
+}
+
+/* Hide the default cursor on interactive elements */
+button,
+a,
+.clickable {
+  cursor: none;
+}
+
+/* Fluid Motion Cursor */
+#cursor {
+  --cursor-size: 40px; /* Base size for the blobs */
+  position: fixed;
+  top: calc(var(--cursor-size) * -0.5);
+  left: calc(var(--cursor-size) * -0.5);
+  mix-blend-mode: difference;
+  filter: url(#goo); /* Apply the SVG filter for gooey effect */
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease-out; /* Smooth movement */
+}
+
+.blob {
+  position: absolute;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background: #87CEFA; /* Match the cursor color */
+  border-radius: 50%;
+  transform-origin: center;
+  animation: blob-pulse 2s infinite ease-in-out alternate; /* Add pulsing animation */
+}
+
+/* Pulsing Animation for Blobs */
+@keyframes blob-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Wiggle Animation for Hover Effect */
+@keyframes wiggle {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Cursor Trail Container */
+#cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+/* Individual Trail Elements */
+.trail {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #87CEFA; /* Match the cursor color */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  animation: fade-out 0.6s ease forwards; /* Adjust animation duration */
+}
+
+/* Fade-Out Animation */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+  #cursor { opacity: 0.6; }
+}
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<!-- Static copy of the contact form so Netlify can detect it at deploy time.
+     The visible form is rendered by React; it POSTs to the same form name. -->
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message"></textarea>
+  <input name="bot-field" />
+</form>
+
+<!-- Fluid Motion Cursor -->
+<div id="cursor">
+  <div class="blob" style="--offset-x: 0px; --offset-y: 0px;"></div>
+  <div class="blob" style="--offset-x: 10px; --offset-y: 10px;"></div>
+  <div class="blob" style="--offset-x: -10px; --offset-y: -10px;"></div>
+</div>
+<div id="cursor-trail"></div>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; visibility: hidden;" aria-hidden="true">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+    </filter>
+  </defs>
+</svg>
+
+<script type="text/babel">
+const ThemeToggle = () => {
+  const [isHackerMode, setIsHackerMode] = React.useState(true);
+  
+  const toggleTheme = () => {
+    setIsHackerMode(!isHackerMode);
+    document.body.classList.toggle('light-mode');
+  };
+
+  return (
+    <div className="theme-toggle" role="button" tabIndex={0} aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') toggleTheme(); }} 
+         style={{
+           position: 'fixed',
+           top: '80px',
+           right: '20px',
+           zIndex: 1000,
+           padding: '12px',
+           background: isHackerMode ? '#1e293b' : '#e2e8f0',
+           borderRadius: '50%',
+           cursor: 'pointer',
+           border: `2px solid ${isHackerMode ? '#64ffda' : '#0ea5e9'}`,
+           boxShadow: `0 0 15px ${isHackerMode ? 'rgba(100, 255, 218, 0.3)' : 'rgba(14, 165, 233, 0.3)'}`,
+           transition: 'all 0.3s ease'
+         }}
+         onClick={toggleTheme}
+    >
+      <i className={`fas fa-${isHackerMode ? 'shield-alt' : 'user'} fa-lg`}
+         style={{
+           color: isHackerMode ? '#64ffda' : '#0ea5e9',
+           filter: `drop-shadow(0 0 2px ${isHackerMode ? '#64ffda' : '#0ea5e9'})`
+         }}
+      ></i>
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <Navbar />
+      <ThemeToggle />
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+	  <CertificatesSection />
+      <ProjectsSection />
+      <ContactSection />
+      <Footer />
+    </div>
+  );
+};
+
+const Navbar = () => {
+  const scrollToSection = (sectionId, e) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = document.querySelector('.navbar').offsetHeight;
+      const elementPosition = element.offsetTop;
+      window.scrollTo({
+        top: elementPosition - navbarHeight - 20,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div className="container">
+        <a className="navbar-brand" href="#" onClick={(e) => scrollToSection('hero', e)}>CyberPortfolio</a>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="#about" onClick={(e) => scrollToSection('about', e)}>About</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#skills" onClick={(e) => scrollToSection('skills', e)}>Skills</a>
+            </li>
+			<li className="nav-item">
+              <a className="nav-link" href="#certificates" onClick={(e) => scrollToSection('certificates', e)}>Certificates</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#projects" onClick={(e) => scrollToSection('projects', e)}>Projects</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#contact" onClick={(e) => scrollToSection('contact', e)}>Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+const HeroSection = () => {
+  const [terminalText, setTerminalText] = React.useState('');
+  const [authorized, setAuthorized] = React.useState(false);
+  const fullText = `> Initializing secure connection...\n> Running system diagnostics...\n> Authenticating user credentials...\n> Accessing mainframe...\n> Decrypting secure database...\n> Establishing encrypted tunnel...\n> Access granted. Welcome to the system.`;
+
+  React.useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      setTerminalText(fullText.substring(0, index));
+      index++;
+      if (index > fullText.length) {
+        clearInterval(timer);
+        setTimeout(() => setAuthorized(true), 500);
+      }
+    }, 12);
+    return () => clearInterval(timer);
+  }, []);
+
+  const mainContent = (
+    <div className="row align-items-center min-vh-100 animate__animated animate__fadeIn"
+         style={{
+           opacity: authorized ? 1 : 0,
+           transition: 'opacity 0.5s ease-in-out',
+           visibility: authorized ? 'visible' : 'hidden'
+         }}>
+      <div className="col-lg-6 animate__animated animate__fadeInLeft">
+        <h1 className="display-4 fw-bold glitch-text">
+          Cyber Security Enthusiast. Liam De Wet
+        </h1>
+        <p className="lead typing-effect">Based in Cape Town, South Africa</p>
+        <p>Recently graduated matriculant exploring the depths of cyber security</p>
+        <a href="https://github.com/ANONYMOUSx46" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg mt-3">
+          <i className="fas fa-terminal me-2"></i>
+          Explore My Work
+        </a>
+		<a 
+          href="Liam_De_Wet_CV1.pdf"  
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="btn btn-outline-light btn-lg mt-3"
+          
+        >
+          <i className="fas fa-file-pdf me-2"></i>
+          View My CV
+        </a>
+      </div>
+      <div className="col-lg-6 animate__animated animate__fadeInRight">
+        <div className="floating-icon text-center">
+          <i className="fas fa-shield-alt fa-10x" style={{color: 'var(--secondary-color)'}}></i>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <section id="hero" className="hero-section">
+      <div id="particles-js"></div>
+      <div className="container hero-content">
+        <div className="terminal-window mb-4" onClick={() => setAuthorized(true)} title="Click to skip" 
+             style={{
+               display: authorized ? 'none' : 'block',
+               visibility: authorized ? 'hidden' : 'visible'
+             }}>
+          <pre style={{ margin: 0, color: '#64ffda' }}>{terminalText}</pre>
+          <small style={{ color: '#8892b0' }}>click to skip</small>
+        </div>
+        {authorized && mainContent}
+      </div>
+    </section>
+  );
+};
+
+const AboutSection = () => { 
+  return (
+    <section id="about" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">About Me</h2>
+        <div className="row">
+          <div className="col-lg-8 mx-auto">
+            <p className="lead text-center">
+              My name is Liam De Wet, a recently matriculated student of 2025, with a STRONG passion for the progressing world of Technology, indulging in the topics I enjoy the most. I'm enhancing my skills in Cyber Security through various courses, focusing on ethical hacking. 
+              Currently learning from platforms like HTB Academy, Forage, Cisco Networking Academy, Cybersecurity courses on Alison.com and TryHackMe.
+            </p>
+            <div className="text-center mt-4">
+				<h3 className="mt-3">
+				  I Excel in these areas: 
+				  <span className="expertise-container">
+					<span className="expertise-keywords"></span>
+				  </span>
+				</h3>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Typed.js effect for expertise areas
+setTimeout(() => {
+    var typed = new Typed(".expertise-keywords", {
+        strings: [
+            "Ethical Hacking",
+            "Web Development",
+            "Network Security"
+        ],
+      typeSpeed: 100, // Speed of typing
+      backSpeed: 50,  // Speed of backspacing
+      startDelay: 500, // Delay before typing starts
+      backDelay: 2000, // Delay before backspacing starts
+      loop: true,      // Loop the animation
+      showCursor: false, // Hide the cursor
+      smartBackspace: true, // Smart backspace for better performance
+      fadeOut: true,   // Fade out effect
+      fadeOutClass: 'typed-fade-out', // Class for fade out effect
+      fadeOutDelay: 500 // Delay before fading out
+    });
+}, 500);
+
+
+
+const SkillsSection = () => {
+  const skills = [
+    { 
+      name: "Python", 
+      icon: "fab fa-python"  // Python logo
+    },
+    { 
+      name: "Linux", 
+      icon: "fab fa-linux"  // Linux logo
+    },
+    { 
+      name: "AWS Cloud", 
+      icon: "fab fa-aws"  // AWS logo
+    },
+    { 
+      name: "Docker", 
+      icon: "fab fa-docker"  // Docker logo
+    },
+    { 
+      name: "Git", 
+      icon: "fab fa-git-alt"  // Git logo
+    },
+    { 
+      name: "Node.js", 
+      icon: "fab fa-node-js"  // Node.js logo
+    },
+    { 
+      name: "Shell Scripting", 
+      icon: "fas fa-terminal"  // Terminal icon for shell
+    },
+    { 
+      name: "Networking", 
+      icon: "fas fa-network-wired"  // Network icon
+    },
+    { 
+      name: "Web Security", 
+      icon: "fas fa-shield-alt"  // Security shield
+    },
+    { 
+      name: "Encryption", 
+      icon: "fas fa-key"  // Key/encryption icon
+    },
+    { 
+      name: "Windows", 
+      icon: "fab fa-windows"  // Windows logo
+    },
+    { 
+      name: "Kali Linux", 
+      icon: "fab fa-linux"  // Linux logo for Kali
+    }
+  ];
+
+  return (
+    <section id="skills" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">
+          <i className="fas fa-laptop-code me-2"></i>
+          Skills & Technologies
+        </h2>
+        <div className="row g-4">
+          {skills.map((skill, index) => (
+            <div key={index} className="col-md-3 col-sm-6">
+              <div className="skill-card h-100">
+                <div className="text-center">
+                  <i className={`${skill.icon} fa-3x mb-3`}></i>
+                  <h5 className="card-title">{skill.name}</h5>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CertificatesSection = () => {
+  const { useState, useEffect } = React;	
+  const [showAll, setShowAll] = React.useState(false);
+  const AllCertificates = [
+    {
+      name: "Python Certificate",
+      image: "/cert.jpg",
+      completed: "2024",
+    },
+    {
+      name: "Web Development Certificate",
+      image: "/cert2.png",
+      completed: "2024",
+    },
+	{
+      name: "Angular Framework Certificate",
+      image: "/angular.jpg",
+      completed: "2025",
+    },
+	{
+      name: "SQL Intermediate Certificate",
+      image: "/SQL.png",
+      completed: "2025",
+    },
+	      	{
+      name: "MongoDB for SQL experts certificate",
+      image: "/mongo.jpg",
+      completed: "2025",
+    },
+    {
+      name: "C programming intermediate certificate",
+      image: "/C-intermediate.png",
+      completed: "2025",
+    },
+    {
+      name: "Java programming intermediate certificate",
+      image: "/java.jpg",
+      completed: "2025",
+    },
+	  {
+		name: "C# programming intermediate certificate",
+      image: "/C-sharp.jpg",
+      completed: "2026",
+	  },
+    {
+      name: "SEO with AI certificate",
+      image: "/SEO.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Prompt Engineering certificate",
+      image: "/PE.jpg",
+      completed: "2025",
+    },
+    {
+      name: "PwC Cybersecurity Job Simulation Certificate. PwC Switzerland Cybersecurity virtual experience program on Forage. Conducted risk assessments, formulated security recommendations, and demonstrated proficiency in cybersecurity concepts, network segmentation, and firewall configuration...",
+      image: "/PwC-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Datacom Cybersecurity Job Simulation Certificate. Datacom Cybersecurity virtual experience program on Forage. Investigated a cyberattack and produced a comprehensive report documenting findings...",
+      image: "/Datacom-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Mastercard Cybersecurity Job Simulation Certificate. Mastercard Cybersecurity virtual experience program on Forage. Helped identify and report security threats such as phishing...",
+      image: "/MC-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "TATA Cybersecurity Job Simulation Certificate. Security Analyst Job Simulation on Forage. Completed a job simulation involving identity and access management (IAM) for Tata Consultancy Services, collaborating with a Cybersecurity Consulting team...",
+      image: "/TATA-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "ANZ Cybersecurity Job Simulation Certificate. ANZ Australia Cybersecurity virtual experience program on Forage. Identified cybersecurity threats, investigated suspicious emails, and analyzed packet capture files to detect potential threats...",
+      image: "/AZN-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "AIG Cybersecurity Job Simulation Certificate. AIG Shields Up Cybersecurity virtual experience program on Forage. Conducted threat analysis, researched vulnerabilities, and provided remediation guidance. Utilized Python for ethical hacking, developing a script to brute-force decryption keys...",
+      image: "/AIG-cert.jpg",
+      completed: "2025",
+    },
+    {
+      name: "Telstra Cybersecurity Job Simulation Certificate.Telstra Cybersecurity virtual experience program on Forage. Conducted malware analysis, mitigated attacks by developing a firewall server rule using Python, and performed an incident postmortem...",
+      image: "/Telstra-cert.jpg",
+      completed: "2025",
+    }
+  ];
+
+  const profiles = [
+    {
+      platform: "HTB Academy",
+      url: "https://academy.hackthebox.com/achievement/badge/b22d6a37-7927-11ef-864f-bea50ffe6cb4",
+      icon: "fas fa-cube",
+      color: "#9FEF00",
+    },
+    {
+      platform: "TryHackMe",
+      url: "https://tryhackme.com/r/p/anonymousx46",
+      icon: "fas fa-user-secret",
+      color: "#CC0000",
+    }
+  ];
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "//cdn.credly.com/assets/utilities/embed.js";
+
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  return (
+    <section id="certificates" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">Certifications</h2>
+
+        {/* Certificates Grid */}
+        <div className="row g-4">
+          {AllCertificates.slice(0, showAll ? AllCertificates.length : 2).map((cert, index) => (
+            <div key={index} className="col-md-6">
+              <div className="card">
+                <img src={cert.image} loading="lazy" className="card-img-top" alt={cert.name} />
+                <div className="card-body text-center">
+                  <h5 className="card-title">{cert.name}</h5>
+                  <p className="card-text">Completed: {cert.completed}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Show All Button */}
+        <div className="text-center mt-3">
+          <button className="btn btn-primary" onClick={() => setShowAll(!showAll)}>
+            {showAll ? "Show Less" : "View All Certificates"}
+          </button>
+        </div>
+
+        {/* Profile Links */}
+        <div className="row g-4 mt-5">
+          {profiles.map((profile, index) => (
+            <div key={index} className="col-md-6">
+              <a href={profile.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                <div
+                  className="card h-100 project-card"
+                  style={{
+                    background: "var(--card-bg)",
+                    border: `1px solid ${profile.color}`,
+                    borderRadius: "10px"
+                  }}
+                >
+                  <div className="card-body text-center p-4">
+                    <i className={`${profile.icon} fa-3x mb-3 floating-icon`} style={{ color: profile.color }}></i>
+                    <h4 className="card-title" style={{ color: profile.color }}>{profile.platform}</h4>
+                    <p className="card-text mt-3">View my {profile.platform} profile</p>
+                    <button
+                      className="btn btn-outline-primary mt-2"
+                      style={{ borderColor: profile.color, color: profile.color }}
+                    >
+                      View Profile <i className="fas fa-external-link-alt ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+
+{/* Cisco / Credly Badges as Static Images */}
+<div className="mt-5">
+  <h3 className="text-center mb-4">Cisco Networking Academy Badges</h3>
+  <div className="d-flex flex-wrap justify-content-center gap-4">
+    {/* Example Badge 1 */}
+      <img
+        src="/introduction-to-modern-ai.png"
+        alt="Introduction to Modern AI Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+
+	    <img
+        src="/ethical-hacker.png"
+        alt="Intermediate Ethical Hacker Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+
+    {/* Add more badges below */}
+   
+      <img
+        src="/introduction-to-cybersecurity (1).png"
+        alt="Introduction to Cybersecurity Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+   
+      <img
+        src="/computer-hardware-basics.png"
+        alt="Computer Hardware Basics Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+    
+      <img
+        src="/engaging-stakeholders-for-success.png"
+        alt="Engaging Stakeholders for Success Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+    
+      <img
+        src="/digital-safety-and-security-awareness.png"
+        alt="Digital Safety and Security Awareness Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+	<img
+        src="/it-customer-support-basics.png"
+        alt="IT Customer Support Basics Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      />
+	<img
+        src="/discovering-entrepreneurship.png"
+        alt="Discovering Entrepreneurship Badge"
+        style={{ width: "150px", height: "150px", objectFit: "contain", borderRadius: "8px" }}
+      	/>
+
+
+  </div>
+</div>
+
+      </div>
+    </section>
+  );
+};
+
+const ProjectsSection = () => {
+  const projects = [
+    {
+      title: "Python Reverse Shell",
+      description: "A Python-based reverse shell script that works seamlessly with the Kali Linux tool netcat. This script allows you to establish a remote connection to a machine, execute commands, and transfer files. The code can also be run through an obfuscator tool for added security",
+      tech: ["Penetration Testing", "Network Security", "Risk Assessment"],
+      icon: "fas fa-network-wired",
+      color: "#07e86c",
+	  image: "/rv2.png",
+      url: "https://github.com/ANONYMOUSx46/Reverse-shell"
+    },
+    {
+      title: "Secure Web Application Platform",
+      description: "Developed a secure web application for my Church Confirmation group, featuring advanced authentication, data encryption, and protection against XSS, CSRF, and SQL Injection vulnerabilities.",
+      tech: ["React", "Node.js", "Security Protocols"],
+      icon: "fas fa-shield-alt",
+      color: "#4169e1",
+      image: "/secure-app.png",
+      url: "https://holy-redeemer-confirmation.netlify.app"
+    },
+	    {
+      title: "Pretty Diary App",
+      description: "Built a fun and interactive diary app, specifically themed for girls. Including many cool features like rich text implementation, emojie feelings etc...",
+      tech: ["HTML5, CSS3, JavaScript (ES6+)"],
+      icon: "fas fa-shield-alt",
+      color: "#e283e6",
+      image: "/diaryapp.png",
+      url: "https://secret-diary.netlify.app"
+    },
+    {
+      title: "Security Tool Development",
+      description: "Created a custom security tool for automated vulnerability scanning and threat detection using machine learning. Hosted on my GitHub along with other projects under ANONYMOUSx46.",
+      tech: ["Python", "AI/ML", "Automation"],
+      icon: "fas fa-tools",
+      color: "#ff4500",
+      image: "/security-tool.png",
+      url: "https://github.com/ANONYMOUSx46/python-security-tool"
+    },
+	{
+      title: "Advanced Web Scrapping Tool",
+      description: "Created a fully custom CLI tool with Python to automate the process of Web Scrapping and perform comprehensive reconnaissance on websites.",
+      tech: ["Python", "WHOIS", "NSLookup", "DIG Queries", "WhatWeb Scan", "Curl", "Nikto", "Amass",  "Automation"],
+      icon: "fas fa-tools",
+      color: "#ff4500",
+      image: "/awt1.png",
+      url: "https://github.com/ANONYMOUSx46/Advanced-Web-Scrapping-Tool"
+    },
+	{
+      title: "Robotics and Coding club Website",
+      description: "A website I built for my school regarding a Coding and Robotics Club we were going to have for the CAT learners.",
+      tech: ["TypeScript","JavaScript", "TailwindCSS", "HTML5"],
+      icon: "fas fa-tools",
+      color: "#ff4500",
+      image: "/rbc.png",
+      url: "https://bestclub.netlify.app"
+    },
+	
+  ];
+
+  return (
+    <section id="projects" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">Featured Projects</h2>
+        <div className="row g-4">
+          {projects.map((project, index) => (
+            <div key={index} className="col-lg-6">
+              <div className="project-card h-100 position-relative">
+                {project.image ? (
+                  <div className="project-image-wrapper">
+                    <img src={project.image} loading="lazy" className="img-fluid project-image" alt={project.title} />
+                    <div className="project-overlay">
+                      <p className="project-description">{project.description}</p>
+                      {project.url && (
+                        <div className="text-center mt-3">
+                          <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ background: project.color, borderColor: project.color }}>
+                            View Project
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <CardContent project={project} />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const style = document.createElement("style");
+style.innerHTML = `
+  .project-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  .project-image-wrapper:hover {
+    transform: scale(1.08);
+  }
+  .project-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: filter 0.3s ease-in-out;
+  }
+  .project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
+    padding: 20px;
+    text-align: center;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+  }
+  .project-image-wrapper:hover .project-overlay {
+    opacity: 1;
+  }
+`;
+document.head.appendChild(style);
+
+
+
+
+
+
+
+const ContactSection = () => {
+  return (
+    <section id="contact" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5" style={{ color: 'var(--secondary-color)' }}>
+          Contact Me
+        </h2>
+        <div className="row">
+          <div className="col-lg-8 mx-auto">
+            <form 
+              name="contact" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field" 
+              className="contact-form"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <p className="d-none">
+                <label>
+                  Don’t fill this out if you're human:
+                  <input name="bot-field" />
+                </label>
+              </p>
+              <div className="mb-3">
+                <input 
+                  type="text" 
+                  name="name" 
+                  className="form-control" 
+                  placeholder="Your Name" aria-label="Your name" 
+                  required 
+                  style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-color)' }}
+                />
+              </div>
+              <div className="mb-3">
+                <input 
+                  type="email" 
+                  name="email" 
+                  className="form-control" 
+                  placeholder="Your Email" aria-label="Your email" 
+                  required 
+                  style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-color)' }}
+                />
+              </div>
+              <div className="mb-3">
+                <textarea 
+                  name="message" 
+                  className="form-control" 
+                  rows="5" 
+                  placeholder="Your Message" aria-label="Your message" 
+                  required 
+                  style={{ background: 'rgba(255,255,255,0.1)', color: 'var(--text-color)' }}
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className="btn btn-primary w-100"
+                style={{
+                  background: 'var(--secondary-color)', 
+                  color: 'var(--primary-color)'
+                }}
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
+const Footer = () => {
+  return (
+    <footer className="py-4 bg-dark text-white">
+      <div className="container text-center">
+        <p className="mb-0">© 2024–{new Date().getFullYear()} Liam De Wet. All rights reserved.</p>
+        <div className="mt-3">
+          <a href="https://github.com/ANONYMOUSx46" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-white me-3"><i className="fab fa-github"></i></a>
+		  <a href="https://www.linkedin.com/in/liam-de-wet-42b80a355/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white"><i className="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize particles.js
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: '#64ffda' },
+      shape: { type: 'circle' },
+      opacity: {
+        value: 0.5,
+        random: false,
+        anim: { enable: false }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: { enable: false }
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: '#64ffda',
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 6,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
+    },
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' },
+        resize: true
+      }
+    },
+    retina_detect: true
+  });
+});
+</script>
+
+<script>
+(function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  var cursor = document.getElementById('cursor');
+  var trail = document.getElementById('cursor-trail');
+  if (!cursor || !trail) return;
+  var mouseX = 0, mouseY = 0, cx = 0, cy = 0, lastTrail = 0, hovering = false;
+
+  document.addEventListener('mousemove', function (e) {
+    mouseX = e.clientX; mouseY = e.clientY;
+    var now = Date.now();
+    if (now - lastTrail > 100) {
+      lastTrail = now;
+      var t = document.createElement('div');
+      t.className = 'trail';
+      t.style.left = mouseX + 'px';
+      t.style.top = mouseY + 'px';
+      trail.appendChild(t);
+      setTimeout(function () { t.remove(); }, 600);
+    }
+  });
+
+  (function loop() {
+    cx += (mouseX - cx) * 0.1;
+    cy += (mouseY - cy) * 0.1;
+    cursor.style.left = cx + 'px';
+    cursor.style.top = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.addEventListener('mouseover', function (e) {
+    var on = !!(e.target.closest && e.target.closest('a, button, .clickable'));
+    if (on === hovering) return;
+    hovering = on;
+    cursor.style.setProperty('--cursor-size', on ? '50px' : '40px');
+    cursor.querySelectorAll('.blob').forEach(function (b) {
+      b.style.animation = on ? 'wiggle 0.5s infinite linear' : '';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
